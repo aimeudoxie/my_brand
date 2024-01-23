@@ -1,0 +1,124 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+section{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(../Images/background.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+   background-position: center center;
+    overflow: hidden;
+}
+.menu{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+.logo{
+    width: 10%;
+    height: 2%;
+}
+.logo img{
+    width: 100%;
+    height: 100%;
+}
+.nav-header ul li{
+    list-style-type:none;
+    display: inline-block;
+    padding:10px 20px;
+
+}
+.nav-header ul li a{
+    color: white;
+    text-decoration: none;
+font-family: Inter;
+font-size: 0.9rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.nav-header ul li a:hover{
+    color:#2EAF3B;
+    transition: .3s;
+
+}
+.nav-header .home{
+    color: #2EAF3B;
+    text-decoration: underline;
+    font-family: Inter;
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+
+.nav-icons ul li{
+    list-style-type:none;
+    display: inline-block;
+    padding: 7px 10px;
+}
+.nav-icons ul li img{
+    width: 1.2rem;
+height: 1.2rem;
+}
+
+.nav-icons button{
+    border-radius: 0.625rem;
+    border: none;
+    background: #2EAF3B;
+    width: 4rem;
+    height: 2rem;
+    margin-right: 2rem;
+   
+}
+.nav-icons button a{
+color: white;
+text-decoration: none;
+}
+.content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 7rem;
+    margin-top: 7rem;
+    flex-direction: column;
+}
+.content h4{
+color: white;
+font-family: helvetica;
+font-size: 2.5rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.content h1{
+    color:#2EAF3B;
+    font-family: helvetica;
+    font-size: 6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    
+}
+.content h2{
+        color: white;
+        font-family: helvetica;
+        font-size: 4rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 12rem;
+}

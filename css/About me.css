@@ -83,3 +83,93 @@ height: 1.2rem;
 color: white;
 text-decoration: none;
 }
+
+
+h2{
+    color: #FFF;
+text-align: center;
+font-family: 'Inter';
+font-size: 2rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.5;
+margin-top:3%
+}
+.line{
+    width: 8rem;
+    height: 0.125rem;
+    background: #2EAF3B;
+    margin-left: 46%;
+}
+
+.img-border{
+    position: relative;
+    margin-top:11%;
+    margin-left: 18%;
+width: 20rem;
+height: 21rem;
+border-radius: 0.9375rem;
+border: 10px solid #2B2B2B;
+background: rgba(217, 217, 217, 0.00);
+
+}
+.img-border img{
+    position: absolute;
+    margin-top:-14%;
+    margin-left: -10%;
+width:100%;
+height: auto;
+border-radius: 0.9375rem;
+
+}
+.content p{
+    color: #FFF;
+    color: rgba(255, 255, 255, 0.80);
+    margin-left: 45%;
+    margin-top: -20%;
+font-family: 'Inter';
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 33rem;
+height: 11rem;
+}
+.resume{
+    border-radius: 0.6rem;
+    border: 1px solid #2EAF3B;
+    background: rgba(46, 175, 59, 0.00);
+    width: 6rem;
+height: 1.9rem;
+flex-shrink: 0;
+margin-left: 70%;
+    margin-top: -8%;
+       
+    }
+    .resume:hover{
+        background: #2EAF3B;
+    width: 6rem;
+height: 1.9rem;
+transition: .2s;
+
+    }
+    .resume a{
+    color:#2EAF3B;
+    text-decoration: none;
+font-family: 'Inter';
+font-size: 0.9rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    }
+
+    .resume a:hover{
+        color:white;
+    text-decoration: none;
+font-family: 'Inter';
+font-size: 0.9rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+transition: .2s;
+    }

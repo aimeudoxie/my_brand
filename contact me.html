@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/contact me.css" >
+    <title>My Brand</title>
+</head>
+<body>
+    <section>
+        <div class="menu">
+            <div class="logo">
+            <a href="/">
+                <img src="Images/Eudoxie-removebg-preview.png">
+            </a>
+        </div>
+            <div class="nav-header">
+                    <a href="index.html">Home</a>
+                    <a href="About me.html"  >About Me</a>
+                     <a href="Skills.html" >Skills</a>
+                    <a href="Portfolio.html" >Portfolio</a>
+                    <a href="Blogs.html" >Blogs</a>
+                    <a href="Contact Me.html" class="home">Contact Me</a>
+            </div>
+            <div class="menu-icon" onclick=showSidebar()><a href="#"><img src="Images/burger-menu.png"></a></div>
+            <div class="side-nav">
+                <div class="close-icon" onclick=hideSidebar()><a href="#"><img src="Images/close.png"></a></div>
+                <a href="index.html">Home</a>
+                <a href="About me.html">About Me</a>
+                 <a href="Skills.html">Skills</a>
+                <a href="Portfolio.html" >Portfolio</a>
+                <a href="Blogs.html">Blogs</a>
+                <a href="Contact Me.html" class="home">Contact Me</a>
+        </div>
+        </div>
+        <h2>Get In Touch</h2>
+        <div class="line"></div>
+        <div class="content">
+            <div class="address">
+                <div class="address-items">
+                    <div class="Image"><img src="Images/maps-and-flags.png">
+                    </div>
+                    <div class="description"><h3>Location</h3>
+                <p>Kigali Rwanda</p></div>
+                </div>
+                <div class="address-items">
+                    <div class="Image">
+                    <img src="Images/mail-inbox-app.png"></div>
+                    <div class="description">
+                    <h3>Email</h3>
+                    <p>eudoxieumwali@gmail.com</p>
+                    </div>
+                </div>
+                    <div class="address-items">
+                        <div class="Image"><img src="Images/phone.png"></div>
+                        <div class="description">
+                        <h3>Call</h3>
+                        <p>+250780527954</p></div>
+                        </div>
+            <div class="social-medias">
+                <a href="#"><img src="Images/instagram.png"></a>
+                <a href="#"><img src="Images/github.png"></a>
+                <a href="#"><img src="Images/behance.png"></a>
+                <a href="#"><img src="Images/facebook-app-symbol.png"></a>
+                <a href="#"><img src="Images/linkedin.png"></a>
+            </div>
+            </div>
+
+            <div class="form">
+                <h4>Leave a message we will get in touch soon</h4>
+                <form action="#">
+<div class="row">
+    <input  type="text" placeholder="Your Name" required name="Name">
+    <input  type="text" placeholder="Your Email" required name="Email"></div>
+    <div class="row-two">
+                    <input type="text" placeholder="Subject" required name="Subject"></div>
+                    <textarea class="form-control" name="message" rows="7" placeholder="Message" required=""></textarea>
+                    <div class="row-three">
+                    <button type="submit">
+                      SEND
+                    </button>
+                    </div>
+                  </form>
+            </div>
+           
+           
+        
+    </div>
+</section>
+<script>
+    function showSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'flex';
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'none';
+    }
+</script>
+</body>
+</html>

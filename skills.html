@@ -26,8 +26,9 @@
                     <a href="Blogs.html">Blogs</a>
                     <a href="Contact Me.html">Contact Me</a>
             </div>
-            <div class="menu-icon" onclick=showSidebar()><a href=""><img src="Images/burger-menu.png"></a></div>
+            <div class="menu-icon" onclick=showSidebar()><a href="#"><img src="Images/burger-menu.png"></a></div>
             <div class="side-nav">
+                <div class="close-icon" onclick=hideSidebar()><a href="#"><img src="Images/close.png"></a></div>
                 <a href="index.html">Home</a>
                 <a href="About me.html">About Me</a>
                  <a href="Skills.html" class="home">Skills</a>
@@ -53,6 +54,15 @@
         </div>
        
 </section>
-    
+<script>
+    function showSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'flex';
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'none';
+    }
+</script> 
 </body>
 </html>

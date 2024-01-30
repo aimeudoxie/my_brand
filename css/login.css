@@ -105,93 +105,70 @@ padding-top: 3% ;
 }
 .content{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 2% 5%;
-}  
-.project{
+    padding: 5% 10%;
+    gap: 5%;
+    flex-wrap: wrap;
+} 
+.form{
     display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 600px;
-  height: 250px;  
-  background: rgba(255, 255, 255, 0.20);
-    border: 2px solid  #2B2B2B;
-    border-radius: 10px;
-}
-.project .image{
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    border-radius: 5px;
+    padding: 5% 1%;
+    width: 350px;
     height: 100%;
-    width: 40%;
-}
-.project .image img{
-width: 100%;
-height: 100%;
-}
-.project .blog-description{
-    display: flex;
-    flex-direction: column;
-    font-family: Inter;
-    width: 60%;
-    padding: 2% 5%;
-}
-.project .description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.project .description h3{
-    font-size: clamp(12px , 1.2vw, 20px);
-    line-height: 2;
-    color: white;
-}
-.project .description p{
-    font-size: clamp(10px , 0.8vw, 15px);
-    color:rgba(255, 255, 255, 0.70);
-    padding: 2% 0%;
-}
-.project .read-more{
-    display: flex;
-    justify-content: flex-end;
-    color: white;
-    font-family: Inter;
-    font-size: clamp(10px , 0.8vw, 20px);
-}
-.read-more .link a{
-    color: white;
-    font-family: Inter;
-    font-size: clamp(10px , 0.5vw, 20px);
-    background: #2B2B2B;
-    padding: 5px 10px;
-    width: 80px;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-}
-.read-more .link a:hover{
-    color: #2EAF3B;
-}
-.engaging{
-    display: flex;
-    gap:4%;
-    align-items: flex-end;
-    margin-bottom: 1%;
+} 
 
-}
-.engaging a{
-    text-decoration: none;
-    color: white;
-    font-family: Inter;
-    font-size: clamp(10px ,0.81vw, 20px);
-}
-.engaging a:hover{
-    color: #2EAF3B;
-}
-.date{
+.row{
     display: flex;
-    justify-content: flex-end;
-    color: white;
-    font-family: Inter;
-    font-size: clamp(10px ,0.5vw, 20px);
+    justify-content: center;
+    flex-direction: column;
+}
+.form .row input[type="Email"]{
+    border-radius: 5px;
+    border: none;
+    background: #121212;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+    padding: 1% 1%;
+    margin: 5%;
+    color: #FFF;
+    font-size: clamp(8px , 0.9vw, 15px);
+    width: 85%;
+}
+.form .row input[type="password"]{
+    border-radius: 5px;
+    border: none;
+    background: #121212;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
+    padding: 1% 1%;
+    margin: 5%;
+    color: #FFF;
+    font-size: clamp(8px , 0.9vw, 15px);
+    width: 85%;
+   
+}
+.form button{
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background: #121212;
+    border: 1px solid #2EAF3B;
+    font-size: clamp(8px , 0.9vw, 15px);
+    width: 30%;
+    height: 20%;
+    text-align: center;
+    color: #2EAF3B;
+    padding: 2.5% 2%;
+    margin-left: 35%;
+    margin-top: 10%;
+}
+.form button:hover{
+    background: #2EAF3B;
+    color: #ffffff;
+    cursor: pointer;
 }
     @media only screen  and (max-width: 1023px){
         .nav-header{
@@ -199,32 +176,16 @@ height: 100%;
         }
         .content{
             flex-wrap: wrap;
-        }
-        .arrow{
-            display: none;
-        }
-    }
-
-        @media only screen  and (max-width: 1024px){
-        .project{
-            display: flex;
-            flex-direction: column;
-            width: 300px;
-            height: 400px;
-        }
-        .content{
-            gap:20px;
             justify-content: center;
         }
-        .project .image{
-            height: 40%;
+        .form .row{
+            flex-wrap: wrap;
+        }
+        .form .row input[type="text"]{
             width: 100%;
         }
-        .project .blog-description{
-            width: 90%;
-            padding: 2% 5%;
-        }
-    }
+    }     
+   
         @media only screen  and (min-width: 1023px){
             .menu-icon{
                 display: none;

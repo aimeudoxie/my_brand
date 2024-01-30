@@ -148,6 +148,9 @@ padding-top: 3% ;
                 .menu-icon{
                     display: none;
                 }
+                .side-nav{
+                    display: none;
+                }
                 }
                 @media only screen  and (max-width: 768px){
                 .content .first{

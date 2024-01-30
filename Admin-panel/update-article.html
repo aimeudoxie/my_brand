@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/update-article.css" >
+    <title>My Brand</title>
+</head>
+<body>
+    <section>
+        <div class="menu">
+            <div class="logo">
+            <a href="/">
+                <img src="../Images/Eudoxie-removebg-preview.png">
+            </a>
+        </div>
+        <div class="left-icons">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="notifications">
+                <a href="notifications.html"><img src="../Images/notification-bell.png"></a>
+                <span class="notification-number">1</span>
+            </div>
+            <div class="profile-image">
+                <a href="profile.html"><img src="../Images/Umwari Eudoxie_photo.jpg"></a>
+            </div>
+            
+            </div>
+            </div>
+        <div class="content">
+            <div class="left">
+                <div class="menu-icon" onclick=showSidebar()><a href="#" ><img src="../Images/burger-menu.png"></a></div>
+                <div class="nav-header">
+                    <a href="index.html">Dashboard</a>
+                    <a href="Admin-blogs.html"  class="home">Blogs</a>
+                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2</span></a>
+                    <a href="settings.html">Settings</a>
+            </div>
+                
+                <div class="side-nav">
+                    <div class="close-icon" onclick=hideSidebar()><a href="#"><img src="../Images/close.png"></a></div>
+                    <a href="index.html">Dashboard</a>
+                    <a href="Admin-blogs.html"  class="home">Blogs</a>
+                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
+                    <a href="settings.html">Settings</a>
+            </div>
+        </div>
+    
+    <div class="right-content">
+        <h2>Update Articles</h2>
+    <div class="form">
+        <form action="#">
+            <label>Article Title</label>
+            <div class="row">
+                <input  type="text" placeholder=" Enter Article Title" required name="Title"></div>
+                <label>Article Text</label>
+                <textarea class="form-control" name="Article text" rows="7" placeholder="Enter Article text" required=""></textarea>
+                <label>Add Image</label><br>
+                <input  type="file" placeholder="select Image" required name="Title">
+                <div class="row-three">
+                <button type="submit">
+                        SAVE
+                </button>
+                </div>
+                </form>
+        </div>
+    </div>
+        </section>
+        <script>
+            function showSidebar(){
+                const sidebar = document.querySelector('.side-nav')
+                sidebar.style.display = 'flex';
+            }
+            function hideSidebar(){
+                const sidebar = document.querySelector('.side-nav')
+                sidebar.style.display = 'none';
+            }
+        </script>
+</body>
+</html>

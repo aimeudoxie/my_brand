@@ -179,9 +179,19 @@ transition: .2s;
         .nav-header{
             display: none;
         }
+        .description{
+            width: 100%;
+        }
+        .img-border{
+        width: 280px;
+        height: 300px;
+    }
         }
         @media only screen  and (min-width: 1023px){
             .menu-icon{
+                display: none;
+            }
+            .side-nav{
                 display: none;
             }
             }

@@ -53,26 +53,7 @@ section{
     line-height: 2;
 
 }
-form input[type="text"]{
-    border-radius: 5px;
-    background:  #414141;
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    padding: 1% 2%;
-    margin: 1%;
-    color: #FFF;
-    font-size: clamp(8px , 0.9vw, 15px);
-}
-form button{
-    border-radius: 5px;
-    background:  #414141;
-    font-size: clamp(8px , 0.9vw, 15px);
-    text-align: center;
-    color: #FFF;
-    border: none;
-    padding-top: 3%;
-    padding-left: 2%;
-    cursor: pointer;
-}
+
 .engaging{
     display: flex;
    gap: 2%;
@@ -96,21 +77,28 @@ form button{
     color: white;
     font-family: Inter;
     font-size: clamp(10px ,1vw, 20px);
+    line-height: 3;
 }
-form .comment{
-    border-radius: 5px;
+.comments{
+    display: flex;
+    flex-direction: column;
+}
+.comments p{
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
-    background:  #414141;
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    padding: 2% 2%;
-    margin: 1%;
-    width: 80%;
-  
+    font-family: inter;
+    padding: 1% 1%;
 }
-form .row{
+.comments h5{
+    color: #FFF;
+    font-size: clamp(8px , 1vw, 15px);
+    font-family: inter;
+    line-height: 2;
+}
+
+.row{
     display: flex;
-    
+    gap: 1%;
 }
 @media only screen  and (max-width: 426px){
     .header .image img{

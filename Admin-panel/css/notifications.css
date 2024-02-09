@@ -213,7 +213,9 @@ padding: 15% 2%;
     padding: 0% 1%;
     margin: 0.5%;
 }
-
+.unread-notifications:hover{
+    background: rgba(255, 255, 255, 0.40);
+}
 .read-notifications{
     border-radius: 5px;
     border-bottom:2px solid rgba(255, 255, 255, 0.80);

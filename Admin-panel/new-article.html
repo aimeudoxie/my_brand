@@ -53,18 +53,17 @@
     <div class="right-content">
         <h2>New Articles</h2>
     <div class="form">
-        <form action="#">
+        <form  id="form">
             <label>Article Title</label>
             <div class="row">
-                <input  type="text" placeholder=" Enter Article Title" required name="Title"></div>
+                <input  type="text" placeholder=" Enter Article Title" required name="Title" id="title"></div>
                 <label>Article Text</label>
-                <textarea class="form-control" name="Article text" rows="7" placeholder="Enter Article text" required=""></textarea>
+                <textarea class="form-control" name="Article text" rows="7" placeholder="Enter Article text" required="" id="text"></textarea>
                 <label>Add Image</label><br>
                 <input  type="file" placeholder="select Image" required name="Title">
                 <div class="row-three">
-                <button type="submit">
-                        SAVE
-                </button>
+                <input type="submit" placeholder="SAVE">
+                </input>
                 </div>
                 </form>
         </div>
@@ -79,6 +78,19 @@
                 const sidebar = document.querySelector('.side-nav')
                 sidebar.style.display = 'none';
             }
+        const form = document.getElementById('form');
+        const title = document.getElementById('title');
+        const text = document.getElementById('text');
+
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+            const titleValue = title.value;
+            const textValue = text.value;
+
+            localStorage.setItem('title',titleValue);
+            localStorage.setItem('text',textValue);
+            window.location.href ="Admin-blogs.html";
+        })
         </script>
 </body>
 </html>

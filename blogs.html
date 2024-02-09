@@ -46,10 +46,8 @@
 
             <div class="blog-description">
                 <div class="description">
-                <h3>Why I don't miss React: a story about using the platform</h3>
-                <p>Just over two years ago I left a role at a London based startup where I lead development of a 
-                    large, React based e-commerce frontend to join Google to work on Chrome DevTools. 
-                    My initial focus was to introduce Web Components as the new fundamental building block of all new DevTools features and UI.</p>
+                <h3 id="title"></h3>
+                <p id="text"></p>
             </div>
 
             <div class="read-more">
@@ -67,8 +65,8 @@
 
             <div class="blog-description">
                 <div class="description">
-                <h3>How I Rewrote My Blog with Next.js</h3>
-                <p>I have had my blog for almost one year, and I decided to rewrite everything with Next.js. 
+                <h3 id="title">How I Rewrote My Blog with Next.js</h3>
+                <p id="text">I have had my blog for almost one year, and I decided to rewrite everything with Next.js. 
                     I stopped working with Gatsby.js after one problem with og:images. Yes, I decided to abandon Gatsby.js 
                     only because of one thing.
                 </p>
@@ -97,6 +95,11 @@
         const sidebar = document.querySelector('.side-nav')
         sidebar.style.display = 'none';
     }
+    const title= localStorage.getItem('title');
+    const text=localStorage.getItem('text');
+
+    document.getElementById('title').textContent = title;
+    document.getElementById('text').textContent = text;
 </script>
 </body>
 </html>

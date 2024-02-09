@@ -11,52 +11,53 @@
 </head>
 <body>
     <section>
+      <a href="blogs.html"><div class="close"><img src="Images/close.png"></div></a>
         <div class="container">
-        <a href="blogs.html"><div class="close"><img src="Images/close.png"></div></a>
-    <div class="header">
-        <div class="image">
-            <img src="Images/pexels-pavel-danilyuk-5496464.jpg">
-        </div>
-        <div class="title">
-            How I Rewrote My Blog with Next.js  
-        </div>
-    </div>
+        
+    
         <div class="content">
-            <p>
-                I wrote the previous version of my blog with Gatsby.js and MDX for custom components in article posts.
-
-I have had my blog for almost one year, and I decided to rewrite everything with Next.js. I stopped working with Gatsby.js after one problem with og:images. Yes, I decided to abandon Gatsby.js only because of one thing.
-
-I don’t remember what exactly was going on and why the problem occurred. Because of this, all my love for Gatsby ended - I had to rewrite the entire landing page for our client.
-
-On my new blog, I decided to change colors a little bit. You can compare my previous website with the current one.
-Hello, Next.js!
-I have been working with Next.js since version 6 (released 16th May 2018), and currently, it's my default React framework. A few months ago, I had a project with Create-React-App, which was a nightmare. I'm not an anti-CRA. I didn't use CRA for a long time and forgot how to use it. For me, the Next router is much more intuitive than React default routing.
-
-I love how Next.js handles server-side rendering. I wrote the entire app with the backend inside Next. It might not be wise to do it, but this app is only for me, so I don’t have to worry about security and all this stuff. I’m not a backend developer. My backend knowledge is limited to the basics of Node and Python.
-The Design
-It’s hard to design anything if you are 100% technical and 0% creative. I can’t even draw a circle or 4 x 90deg square by myself. I could use some help from designers from our company, but I didn't want to wait until they were free. So I decided to do it independently, like the previous design.
-
-First of all, I planned what I wanted to have on every blog page. I used Notion to jot down all the ideas, and after a few days of thinking, I started to do some research. I spent several hours on Dribbble to get inspired and find all the best solutions for my new blog. Then, I began to do some basic designs in Figma.
-I have planned and designed more sections, but this will have to do for a start.
-
-I had some feedback and design consultation from Diana and her help in designing the first section on the homepage.
-            </p>
+            <p> </p>
         
         <div class="engaging">
             <a href=" "> 200 Likes </a>
             <a href=""> 15 Comments </a>
           </div>
-          <h4>Add comment</h4>
-        <form action="#" class="form">
-        <input type="text" placeholder="Your Name" required name="Subject">
-        <div class="row"><textarea class="comment" name="message" rows="1" placeholder="Your comment" required=""></textarea>
-        <button type="submit" >
-            <img src="Images/send.png">
-          </button></div>
-        </form>
+          <h4>Comment</h4>
+          <div class="comments">
+            <div class="row"><h5>Alain Mutoyi:   </h5>
+            <p>Good job Bro keep it up</p></div>
+            <div class="row"><h5>Alain Mutoyi:   </h5>
+                <p>Good job Bro keep it up</p></div>
+          </div>
     </div>
 </div>
     </section>
+    <script>
+             function showData() {
+            var articleList;
+            if (localStorage.getItem("articleList") == null) {
+                articleList = [];
+            } else {
+                articleList = JSON.parse(localStorage.getItem("articleList"));
+            }
+
+            var html = "";
+            articleList.forEach(function (element, index) {
+                html += `<div class="header">
+        <div class="image">
+            <img src="${element.articleImage}" alt="Article Image" width="50" height="50">
+        </div>
+        <div class="title">
+            "${element.articleTitle}"  
+        </div>
+    </div>
+    <div class="content">
+            <p>  "${element.articleText}"</p>`
+            });
+            document.querySelector(".container").innerHTML = html;
+        }
+
+        document.onload = showData();
+    </script>
 </body>
 </html>

@@ -106,21 +106,21 @@ padding-top: 3% ;
 .content{
     display: flex;
     justify-content: space-between;
+    gap: 15px;
     align-items: center;
-    padding: 2% 5%;
+    padding: 2% 4%;
+    flex-wrap: wrap;
 }  
 .blog{
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
-    width: 600px;
-  height: 250px;  
+    width: 30%;
+    height: 240px;
   background: rgba(255, 255, 255, 0.20);
     border: 2px solid  #2B2B2B;
     border-radius: 10px;
 }
 .blog .image{
-    height: 100%;
     width: 40%;
 }
 .blog .image img{
@@ -141,7 +141,7 @@ height: 100%;
 }
 .blog .description h3{
     font-size: clamp(12px , 1.2vw, 20px);
-    line-height: 2;
+    line-height: 1.5;
     color: white;
 }
 .blog .description p{
@@ -209,8 +209,8 @@ height: 100%;
             .blog{
             display: flex;
             flex-direction: column;
-            width: 300px;
-            height: 400px;
+            width: 250px;
+            height: 250px;
         }
         .content{
             gap:20px;

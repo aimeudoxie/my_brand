@@ -131,9 +131,9 @@ padding-top: 3% ;
     border-radius: 5px;
     border: none;
     background: #121212;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
-    padding: 1% 1%;
-    margin: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    padding: 2% 1%;
+    margin: 3%;
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
     width: 90%;
@@ -142,9 +142,9 @@ padding-top: 3% ;
     border-radius: 5px;
     border: none;
     background: #121212;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
-    padding: 1% 1%;
-    margin: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    padding: 2% 1%;
+    margin: 3%;
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
     width: 90%;
@@ -153,15 +153,15 @@ padding-top: 3% ;
     border-radius: 5px;
     border: none;
     background: #121212;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.40);
-    padding: 1% 1%;
-    margin: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    padding: 2% 1%;
+    margin: 3%;
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
     width: 90%;
    
 }
-.form button{
+.form input[type="submit"]{
     display: flex;
     justify-content: center;
     border-radius: 5px;
@@ -176,23 +176,46 @@ padding-top: 3% ;
     margin-left: 35%;
     margin-top: 10%;
 }
-.form button:hover{
+.form input[type="submit"]:hover{
     background: #2EAF3B;
     color: #ffffff;
     cursor: pointer;
 }
-.form-control small {
-	color: #e74c3c;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	visibility: hidden;
+.form .signup{
+    text-align: center;
+    color: #FFF;
+    font-size: clamp(8px , 0.7vw, 15px);
+    font-family: inter;
+    line-height: 5;
+  
+}
+.form .signup a{
+    text-align: center;
+    color: #2EAF3B;
+    text-decoration: none;
+    font-size: clamp(8px , 0.9vw, 15px);
+    font-family: inter;
+    line-height: 5;
+  
+}
+.form-control input:focus {
+    outline: 0;
 }
 
-.form-control.error small {
-	visibility: visible;
+.form-control.success input {
+    border-color: #09c372;
 }
 
+.form-control.error input {
+    border-color: #ff3860;
+}
+
+.form-control .error {
+    color: #ff3860;
+    font-size: 12px;
+    font-family: inter;
+    height: 13px;
+}
     @media only screen  and (max-width: 1023px){
         .nav-header{
             display: none;
@@ -201,12 +224,7 @@ padding-top: 3% ;
             flex-wrap: wrap;
             justify-content: center;
         }
-        .form .row{
-            flex-wrap: wrap;
-        }
-        .form .row input[type="text"]{
-            width: 100%;
-        }
+       
     }     
    
         @media only screen  and (min-width: 1023px){

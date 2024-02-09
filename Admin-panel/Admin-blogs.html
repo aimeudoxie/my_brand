@@ -4,132 +4,247 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/admin-blogs.css" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin-blogs.css">
     <title>My Brand</title>
 </head>
 <body>
     <section>
         <div class="menu">
             <div class="logo">
-            <a href="/">
-                <img src="../Images/Eudoxie-removebg-preview.png">
-            </a>
+                <a href="/">
+                    <img src="../Images/Eudoxie-removebg-preview.png">
+                </a>
+            </div>
+            <div class="left-icons">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="notifications">
+                    <a href="notifications.html"><img src="../Images/notification-bell.png"></a>
+                    <span class="notification-number">1</span>
+                </div>
+                <div class="profile-image">
+                    <a href="profile.html"><img src="../Images/Umwari Eudoxie_photo.jpg"></a>
+                </div>
+            </div>
         </div>
-        <div class="left-icons">
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-            </div>
-            <div class="notifications">
-                <a href="notifications.html"><img src="../Images/notification-bell.png"></a>
-                <span class="notification-number">1</span>
-            </div>
-            <div class="profile-image">
-                <a href="profile.html"><img src="../Images/Umwari Eudoxie_photo.jpg"></a>
-            </div>
-            
-            </div>
-            </div>
         <div class="content">
             <div class="left">
-                <div class="menu-icon" onclick=showSidebar()><a href="#" ><img src="../Images/burger-menu.png"></a></div>
+                <div class="menu-icon" onclick="showSidebar()"><a href="#"><img src="../Images/burger-menu.png"></a></div>
                 <div class="nav-header">
                     <a href="index.html">Dashboard</a>
-                    <a href="Admin-blogs.html"  class="home">Blogs</a>
+                    <a href="Admin-blogs.html" class="home">Blogs</a>
                     <a href="Admin-messages.html">Messages <span class="message-numbers"> 2</span></a>
-                    <a href="settings.html">Settings</a>
-            </div>
-                
-                <div class="side-nav">
-                    <div class="close-icon" onclick=hideSidebar()><a href="#"><img src="../Images/close.png"></a></div>
-                    <a href="index.html">Dashboard</a>
-                    <a href="Admin-blogs.html"  class="home">Blogs</a>
-                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
-                    <a href="settings.html">Settings</a>
-            </div>
-        </div>
-    
-    <div class="right-content">
-        <h2>Articles</h2>
-        <div class="Articles">
-            <div class="new-article">
-                <img src="../Images/plus-sign.png"><span><a href="new-article.html">New Article</a></span> 
-            </div>
-            <h3>All Articles</h3>
-            <div class="Articles-items">
-                <div class="image"><a href=""><img src="../Images/pexels-pavel-danilyuk-5496464.jpg"></a>
+                    <a href="users.html">Users</a>
+                <a href="../login.html">Log Out</a>
                 </div>
+                <div class="side-nav">
+                    <div class="close-icon" onclick="hideSidebar()"><a href="#"><img src="../Images/close.png"></a></div>
+                    <a href="index.html">Dashboard</a>
+                    <a href="Admin-blogs.html" class="home">Blogs</a>
+                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
+                    <a href="users.html">Users</a>
+                <a href="../login.html">Log Out</a>
+                </div>
+            </div>
+            <div class="right-content">
+                <h2>Articles</h2>
+                <div class="form">
+                    <form id="form" autocomplete="off">
+                        <label>Article Title</label>
+                        <div class="row">
+                            <input type="text" placeholder=" Enter Article Title" required name="Title" id="articleTitle">
+                        </div>
+                        <label>Article Text</label>
+                        <textarea class="form-control" name="Article text" rows="7" placeholder="Enter Article text" required="Article Text" id="articleText"></textarea>
+                        <label>Add Image</label><br>
+                        <input type="file" placeholder="select Image" required name="Image" id="articleImage">
+                        <div class="row-three">
+                            <button onclick="AddData()" class="submit" id="submit">SAVE</button>
+                            <button onclick="updateData()" class="update" id="update">UPDATE</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="Articles">
+                    <div class="new-article">
+                        <img src="../Images/plus-sign.png"><span><a href="#" onclick="showForm()">New Article</a></span>
+                    </div>
+                    <h3>All Articles</h3>
+                    <table class="list" id="articleList">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Text</th>
+                                <th>Image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data">
 
-            <div class="blog-description">
-                <div class="description">
-                    <h3>Why I don't miss React: a story about using the platform</h3>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="read-more">
-                <div class="link"><a href="read more.html">Read More</a></div>
-            </div>
-            <div class="engaging">
-              <a href=" "> 200 Likes </a>
-              <a href=""> 15 Comments </a>
-            </div>
-            <div class="updating">
-                <a href="update-article.html"> <img src="../Images/update.png">  Update </a>
-                <a href="#" onclick="confirmDelete()"> <img src="../Images/delete-button.png"> Delete </a>
-              </div>
-            <div class="date">12 Jan</div>
         </div>
-            </div>
-            <div class="Articles-items">
-                <div class="image"><a href=""><img src="../Images/ben-kolde-FaPxZ88yZrw-unsplash.jpg"></a></div>
+    </section>
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.side-nav');
+            sidebar.style.display = 'flex';
+        }
 
-            <div class="blog-description">
-                <div class="description">
-                <h3>How I Rewrote My Blog with Next.js</h3>
-            </div>
-            <div class="read-more">
-                <div class="link"><a href="read more.html">Read More</a></div>
-            </div>
-            <div class="engaging">
-              <a href=" "> 200 Likes </a>
-              <a href=""> 15 Comments </a>
-            </div>
-            <div class="updating">
-                <a href="update-article.html"> <img src="../Images/update.png">  Update </a>
-                <a href="#" onclick="confirmDelete()"> <img src="../Images/delete-button.png"> Delete </a>
-              </div>
-            <div class="date">12 Jan</div>
-        </div>
-            </div> 
-            <!--<div class="navigating">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-            </div>   -->                      
-        </div>
-           
-            
-        </div>
-    </div>
-        </section>
-        <script>
-            function showSidebar(){
-                const sidebar = document.querySelector('.side-nav')
-                sidebar.style.display = 'flex';
+        function hideSidebar() {
+            const sidebar = document.querySelector('.side-nav');
+            sidebar.style.display = 'none';
+        }
+
+        function showForm() {
+            const form = document.querySelector('.form');
+            form.style.display = 'flex';
+            const newArticle = document.querySelector('.new-article');
+            newArticle.style.display = 'none';
+        }
+        function showBtn(){
+           const submit= document.querySelector('.submit');
+           submit.style.display = "none";
+                    const update =document.querySelector('.update');
+                    update.style.display = "flex";
+        }
+
+        function validateForm() {
+            var articleTitle = document.getElementById("articleTitle").value;
+            var articleText = document.getElementById("articleText").value;
+            var articleImage = document.getElementById("articleImage").value;
+
+            if (articleTitle == "") {
+                alert("First Name is required");
+                return false;
             }
-            function hideSidebar(){
-                const sidebar = document.querySelector('.side-nav')
-                sidebar.style.display = 'none';
+            if (articleText == "") {
+                alert("Last Name is required");
+                return false;
             }
-            function confirmDelete() {
 
-    var result = window.confirm("Are you sure you want to delete this message?");
-    if (result) {
-        deleteMessage();
-    } else {
-        console.log("Deletion canceled");
-    }
+            if (articleImage == "") {
+                alert("articleImage is required");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function showData() {
+            var articleList;
+            if (localStorage.getItem("articleList") == null) {
+                articleList = [];
+            } else {
+                articleList = JSON.parse(localStorage.getItem("articleList"));
+            }
+
+            var html = "";
+            articleList.forEach(function (element, index) {
+                html += "<tr>";
+                
+                html += `<td><img src="${element.articleImage}" alt="Article Image" width="50" height="50"> </td>`;
+                html += "<td>" + element.articleTitle + "</td>";
+                html += "<td>" + element.articleText + "</td>";
+                
+                html += '<td><button class="read"><a href="read more.html">Read</a></button><button onclick="updateData(' + index + ')" class="edit">Edit</button> <button onclick="deleteData(' + index + ')" class="delete">Delete</button> ';
+                html += "</tr>";
+            });
+            document.querySelector("#articleList tbody").innerHTML = html;
+        }
+
+        document.onload = showData();
+
+        function AddData() {
+  if (validateForm() == true) {
+    const articleTitle = document.getElementById("articleTitle").value;
+    const articleText = document.getElementById("articleText").value;
+    const articleImage = document.getElementById("articleImage").files[0]; // Get the selected file
+
+    const fr = new FileReader();
+    fr.readAsDataURL(articleImage);
+
+    fr.addEventListener('load', () => {
+      const url = fr.result;
+      const articleList = JSON.parse(localStorage.getItem("articleList") || "[]"); // Handle empty localStorage
+
+      articleList.push({
+        articleTitle,
+        articleText,
+        articleImage: url, // Store actual base64 image data
+      });
+
+      localStorage.setItem("articleList", JSON.stringify(articleList));
+      showData();
+      document.getElementById("articleTitle").value = "";
+      document.getElementById("articleText").value = "";
+      document.getElementById("articleImage").value = ""; // Clear file input
+    });
+  }
 }
 
-        </script>
+        function deleteData(index) {
+            var articleList;
+            if (localStorage.getItem("articleList") == null) {
+                articleList = [];
+            } else {
+                articleList = JSON.parse(localStorage.getItem("articleList"));
+            }
+
+            articleList.splice(index, 1);
+            localStorage.setItem("articleList", JSON.stringify(articleList));
+            showData();
+        }
+
+        function updateData(index) {
+            showForm();
+            showBtn();
+            
+            const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
+
+            const originalArticle = articleList[index];
+  const existingImage = originalArticle.articleImage;
+  document.getElementById("articleTitle").value = originalArticle.articleTitle;
+  document.getElementById("articleText").value = originalArticle.articleText;
+
+  document.querySelector(".update").onclick = function () {
+    if (validateForm() === true) {
+      const selectedImage = document.getElementById("articleImage").files[0];
+      const fr = new FileReader();
+
+      // Update image data on read success
+      fr.onload = () => {
+        const newImageURL = fr.result;
+
+        // Update article data
+        articleList[index] = {
+          ...originalArticle, // Preserve existing properties
+          articleTitle: document.getElementById("articleTitle").value,
+          articleText: document.getElementById("articleText").value,
+          articleImage: newImageURL || existingImage, // Use new image if selected, existing otherwise
+        };
+
+        // Store updated article list
+        localStorage.setItem("articleList", JSON.stringify(articleList));
+
+        // Display updated data
+        showData();
+
+        // Clear form fields
+        document.getElementById("articleTitle").value = "";
+        document.getElementById("articleText").value = "";
+        document.getElementById("articleImage").value = "";
+      };
+
+      // Start image read
+      fr.readAsDataURL(selectedImage);
+    }
+  };
+        }
+    </script>
 </body>
 </html>

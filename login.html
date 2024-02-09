@@ -45,10 +45,12 @@
 <div class="row">
     <input  type="Email" placeholder=" Enter your Email" required name="Email"><br>
     <input  type="password" placeholder="Enter your password" required name="password">
+    
 </div>
                     <button type="submit" >
-                      SUBMIT
+                      Log In
                     </button>
+                  <div class="signup">Don't have account <a href="signup.html">Sign Up</a></div>
                   </form>
             </div>
     </div>
@@ -62,6 +64,20 @@
         const sidebar = document.querySelector('.side-nav')
         sidebar.style.display = 'none';
     }
-</script>
+    function validateForm(){
+    var email= document.getElementById("email").value;
+    var password= document.getElementById("password").value;
+    
+
+    if(fname == ""){
+        alert("First Name is required");
+        return false;
+    }
+    if(lname == ""){
+        alert("Last Name is required");
+        return false;
+    }
+}
+</script> 
 </body>
 </html>

@@ -53,7 +53,7 @@
     <div class="right-content">
         <h2>New Articles</h2>
     <div class="form">
-        <form  id="form">
+        <form  id="form" onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
             <label>Article Title</label>
             <div class="row">
                 <input  type="text" placeholder=" Enter Article Title" required name="Title" id="title"></div>

@@ -38,7 +38,8 @@
                 <a href="" class="home">Dashboard</a>
                 <a href="Admin-blogs.html">Blogs</a>
                 <a href="Admin-messages.html">Messages <span class="message-numbers"> 2</span></a>
-                <a href="settings.html">Settings</a>
+                <a href="users.html">Users</a>
+                <a href="../login.html">Log Out</a>
         </div>
             
             <div class="side-nav">
@@ -46,7 +47,8 @@
                 <a href="" class="home">Dashboard</a>
                 <a href="Admin-blogs.html">Blogs</a>
                 <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
-                <a href="settings.html">Settings</a>
+                <a href="users.html">Users</a>
+                <a href="../login.html">Log Out</a>
         </div>
     </div>
     <div class="right-content">
@@ -69,9 +71,30 @@
                 </div>
             </div>
             <h4>Activities</h4>
+            <div class="user-activities">
+                <table class="list" id="userList">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-        </section>
+        </section> 
         <script>
             function showSidebar(){
                 const sidebar = document.querySelector('.side-nav')
@@ -81,6 +104,79 @@
                 const sidebar = document.querySelector('.side-nav')
                 sidebar.style.display = 'none';
             }
+            document.onload = showData();
+function showData(){
+    var userList;
+    if(localStorage.getItem("userList") == null){
+        userList = [];
+    }
+    else{
+        userList = JSON.parse(localStorage.getItem("userList"));
+    }
+    var html = "";
+    userList.forEach(function (element, index){
+        html += "<tr>";
+        html += "<td>" + element.fname + "</td>";
+        html += "<td>" + element.lname + "</td>";
+        html += "<td>" + element.email + "</td>";
+        html += '<td><button onclick="updateData('+index+')" class="edit">Edit</button> <button onclick="deleteData(' + index + ')" class="delete">Delete</button> ';
+        html += "</tr>";
+
+    });
+    document.querySelector("#userList tbody").innerHTML = html;
+}
+
+ function deleteData(index){
+    var userList;
+    if(localStorage.getItem("userList") == null){
+        userList = [];
+    }
+    else{
+        userList = JSON.parse(localStorage.getItem("userList"));
+    }
+
+    userList.splice(index, 1);
+    localStorage.setItem("userList", JSON.stringify(userList));
+    showData();
+ }
+
+ function updateData(index){
+    var userList;
+    if(localStorage.getItem("userList") == null){
+        userList = [];
+    }
+    else{
+        userList = JSON.parse(localStorage.getItem("userList"));
+    }
+
+    document.getElementById("fname").value =userList[index].fname;
+    document.getElementById("lname").value= userList[index].lname;
+    document.getElementById("email").value = userList[index].email;
+    document.getElementById("password").value = userList[index].password;
+    document.getElementById("password2").value = userList[index].password2;
+
+    document.querySelector("#Update").onclick = function(){
+
+        if(validateForm()== true){
+            userList[index].fname = document.getElementById("fname").value;
+            userList[index].lname = document.getElementById("lname").value;
+            userList[index].email = document.getElementById("email").value;
+            userList[index].password =document.getElementById("password").value;
+            userList[index].password2 =document.getElementById("password2").value;
+
+            localStorage.setItem("userList", JSON.stringify(userList));
+    showData();
+     
+    document.getElementById("fname").value ="";
+    document.getElementById("lame").value="";
+    document.getElementById("email").value ="";
+    document.getElementById("password").value ="";
+    document.getElementById("password2").value ="";
+    }
+}
+ 
+}
+
         </script>
 </body>
 </html>

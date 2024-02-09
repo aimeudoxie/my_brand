@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/users.css">
+    <title>My Brand</title>
+</head>
+<body>
+    <section>
+        <div class="menu">
+            <div class="logo">
+                <a href="/">
+                    <img src="../Images/Eudoxie-removebg-preview.png">
+                </a>
+            </div>
+            <div class="left-icons">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="notifications">
+                    <a href="notifications.html"><img src="../Images/notification-bell.png"></a>
+                    <span class="notification-number">1</span>
+                </div>
+                <div class="profile-image">
+                    <a href="profile.html"><img src="../Images/Umwari Eudoxie_photo.jpg"></a>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+                <div class="menu-icon" onclick="showSidebar()"><a href="#"><img src="../Images/burger-menu.png"></a></div>
+                <div class="nav-header">
+                    <a href="index.html">Dashboard</a>
+                    <a href="Admin-blogs.html">Blogs</a>
+                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2</span></a>
+                    <a href="users.html"  class="home">Users</a>
+                <a href="../login.html">Log Out</a>
+                </div>
+                <div class="side-nav">
+                    <div class="close-icon" onclick="hideSidebar()"><a href="#"><img src="../Images/close.png"></a></div>
+                    <a href="index.html">Dashboard</a>
+                    <a href="Admin-blogs.html">Blogs</a>
+                    <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
+                    <a href="users.html"  class="home">Users</a>
+                <a href="../login.html">Log Out</a>
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="form">
+                    <form id="form">
+    
+       
+        <div class="form-control"><input  type="Text" placeholder="First name"  id="fname"><div class="error"></div>
+        <input  type="Text" placeholder="Last name"  id="lname"><div class="error"></div></div>
+        <div class="form-control"><input  type="Email" placeholder="Email"  id="email"><div class="error"></div></div>
+        <div class="form-control"><input  type="password" placeholder="password"  id="password"><div class="error"></div>
+        <input  type="password" placeholder="confirm your password"  id="password2"><div class="error"></div></div>
+    
+
+                        <input type="submit" value="update"></input>
+                      </form>
+                      </div>
+                <h4>Registered Users</h4>
+                <div class="user-activities">
+                    <table class="list" id="userList">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            </section> 
+            <script>
+                  function showSidebar() {
+            const sidebar = document.querySelector('.side-nav');
+            sidebar.style.display = 'flex';
+        }
+
+        function hideSidebar() {
+            const sidebar = document.querySelector('.side-nav');
+            sidebar.style.display = 'none';
+        }
+
+        function showForm() {
+            const form = document.querySelector('.form');
+            form.style.display = 'flex';
+        }
+                document.onload = showData();
+    function showData(){
+        var userList;
+        if(localStorage.getItem("userList") == null){
+            userList = [];
+        }
+        else{
+            userList = JSON.parse(localStorage.getItem("userList"));
+        }
+        var html = "";
+        userList.forEach(function (element, index){
+            html += "<tr>";
+            html += "<td>" + element.fname + "</td>";
+            html += "<td>" + element.lname + "</td>";
+            html += "<td>" + element.email + "</td>";
+            html += '<td><button onclick="updateData('+index+')" class="edit">Edit</button> <button onclick="deleteData(' + index + ')" class="delete">Delete</button> ';
+            html += "</tr>";
+    
+        });
+        document.querySelector("#userList tbody").innerHTML = html;
+    }
+    
+     function deleteData(index){
+        var userList;
+        if(localStorage.getItem("userList") == null){
+            userList = [];
+        }
+        else{
+            userList = JSON.parse(localStorage.getItem("userList"));
+        }
+    
+        userList.splice(index, 1);
+        localStorage.setItem("userList", JSON.stringify(userList));
+        showData();
+     }
+    
+     function updateData(index){
+        showForm()
+
+        var userList;
+        if(localStorage.getItem("userList") == null){
+            userList = [];
+        }
+        else{
+            userList = JSON.parse(localStorage.getItem("userList"));
+        }
+    
+        document.getElementById("fname").value =userList[index].fname;
+        document.getElementById("lname").value= userList[index].lname;
+        document.getElementById("email").value = userList[index].email;
+        document.getElementById("password").value = userList[index].password;
+        document.getElementById("password2").value = userList[index].password2;
+        showForm()
+    
+        document.querySelector("#Update").onclick = function(){
+    
+            if(validateForm()== true){
+                userList[index].fname = document.getElementById("fname").value;
+                userList[index].lname = document.getElementById("lname").value;
+                userList[index].email = document.getElementById("email").value;
+                userList[index].password =document.getElementById("password").value;
+                userList[index].password2 =document.getElementById("password2").value;
+    
+                localStorage.setItem("userList", JSON.stringify(userList));
+        showData();
+         
+        document.getElementById("fname").value ="";
+        document.getElementById("lame").value="";
+        document.getElementById("email").value ="";
+        document.getElementById("password").value ="";
+        document.getElementById("password2").value ="";
+        }
+    }
+     
+    }
+    
+            </script>
+</body>
+</html>

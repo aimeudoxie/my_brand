@@ -48,6 +48,32 @@
         <!--<div class="arrow"><a href=""><img src="Images/right-chevron.png"></a></div>-->
         </div>
     </div>
+    <div class="container">
+        <div class="overlay"></div>
+        <a href="blogs.html"><div class="close"><img src="Images/close.png"></div></a>
+    <div class="header">
+        <div class="blogimage">
+            
+        </div>
+        <div class="title"></div>
+
+    </div>
+        <div class="readcontent">
+            <p class="Atext"> </p>
+        
+        <!--<div class="engaging">
+            <a href=" "> 200 Likes </a>
+            <a href=""> 15 Comments </a>
+          </div>
+          <h4>Comment</h4>
+          <div class="comments">
+            <div class="row"><h5>Alain Mutoyi:   </h5>
+            <p>Good job Bro keep it up</p></div>
+            <div class="row"><h5>Alain Mutoyi:   </h5>
+                <p>Good job Bro keep it up</p></div>
+          </div>-->
+</div>
+</div>
 </section> 
 <script>
     function showSidebar(){
@@ -58,6 +84,11 @@
         const sidebar = document.querySelector('.side-nav')
         sidebar.style.display = 'none';
     }
+    function showContainer() {
+            const form = document.querySelector('.container');
+            form.style.display = 'flex';
+
+        }
     const title= localStorage.getItem('title');
     const text=localStorage.getItem('text');
 
@@ -69,6 +100,7 @@
             } else {
                 articleList = JSON.parse(localStorage.getItem("articleList"));
             }
+            articleList.sort((a, b) => articleList.indexOf(b) - articleList.indexOf(a));
 
             var html = "";
             articleList.forEach(function (element, index) {
@@ -88,12 +120,9 @@ const outputString = first30Words.join(" ");
     <h3 id="title">${element.articleTitle}</h3>
     <p id="text">${outputString}
     </p>
-</div>
-
-<div class="read-more">
-    <div class="link"><a href="read more.html?index=${index}">Read More</a></div>
-</div>
-<div class="engaging">
+</div>`;
+html += '<div class="read-more"><button class="link" onclick="readData(' + index + ')">Read More</button></div>'
+html += `<div class="engaging">
   <a href=" "><img src="Images/heart.png"> 2 </a>
   <a href=""><img src="Images/comments.png"> 1 </a>
 </div>
@@ -105,6 +134,21 @@ const outputString = first30Words.join(" ");
         }
 
         document.onload = showData();
+
+        function readData(index) {
+            showContainer()
+            const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
+            const originalArticle = articleList[index];
+
+            var  html="";
+            html += `<img src="${originalArticle.articleImage}" alt="Article Image">`;
+
+            document.querySelector(".blogimage").innerHTML = html;
+document.querySelector(".title").textContent = originalArticle.articleTitle;
+document.querySelector(".Atext").textContent = originalArticle.articleText;
+
+        }
+         
     
 </script>
 </body>

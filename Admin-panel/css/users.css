@@ -85,7 +85,6 @@ section{
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border: 1px solid rgba(255, 255, 255, 0.20);
     width: 100%;
     height: 100vh;
 } 
@@ -197,6 +196,8 @@ padding: 15% 2%;
     color: #FFF;
     font-family: inter;
     padding: 2%;
+    border-collapse: collapse;
+  border: 1px solid black;
 }
 .list thead th{
     border: 1px solid rgba(255, 255, 255, 0.40);
@@ -206,11 +207,10 @@ padding: 15% 2%;
 
 }
 .list tbody td{
+    border:none;
+    background: rgba(255, 255, 255, 0.20);
     border: 1px solid rgba(255, 255, 255, 0.40);
-    font-size: clamp(10px , 1vw, 30px);
-    padding: 1% 1%;
-    margin: 1%;
-
+    padding: 1% 1%;  
 }
 .list tbody td button{
     font-size: clamp(10px , 1vw, 30px);

@@ -12,51 +12,48 @@
 <body>
     <section>
         <div class="container">
-        <a href="Admin-blogs.html"><div class="close"><img src="../Images/close.png"></div></a>
-    
-        <div class="content">
-            <p> </p>
-        
-        <div class="engaging">
-            <a href=" "> 200 Likes </a>
-            <a href=""> 15 Comments </a>
-          </div>
-          <h4>Comment</h4>
-          <div class="comments">
-            <div class="row"><h5>Alain Mutoyi:   </h5>
-            <p>Good job Bro keep it up</p></div>
-            <div class="row"><h5>Alain Mutoyi:   </h5>
+            <a href="Admin-blogs.html"><div class="close"><img src="../Images/close.png"></div></a>
+        <div class="header">
+            <div class="image">
+                <img src/>
+            </div>
+            <div class="title"></div>
+
+        </div>
+            <div class=".readcontent">
+                <p class="Atext"> </p>
+            
+            <div class="engaging">
+                <a href=" "> 200 Likes </a>
+                <a href=""> 15 Comments </a>
+              </div>
+              <h4>Comment</h4>
+              <div class="comments">
+                <div class="row"><h5>Alain Mutoyi:   </h5>
                 <p>Good job Bro keep it up</p></div>
-          </div>
+                <div class="row"><h5>Alain Mutoyi:   </h5>
+                    <p>Good job Bro keep it up</p></div>
+              </div>
     </div>
 </div>
     </section>
     <script>
-             function showData() {
-            var articleList;
-            if (localStorage.getItem("articleList") == null) {
-                articleList = [];
-            } else {
-                articleList = JSON.parse(localStorage.getItem("articleList"));
-            }
+ function readData(index) {
+            
 
-            var html = "";
-            articleList.forEach(function (element, index) {
-                html += `<div class="header">
-        <div class="image">
-            <img src="${element.articleImage}" alt="Article Image" width="50" height="50">
-        </div>
-        <div class="title">
-            "${element.articleTitle}"  
-        </div>
-    </div>
-    <div class="content">
-            <p>  "${element.articleText}"</p>`
-            });
-            document.querySelector(".container").innerHTML = html;
+            showContainer()
+            const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
+            const originalArticle = articleList[index];
+
+            var  html="";
+            html += `<img src="${originalArticle.articleImage}" alt="Article Image">`;
+
+            document.querySelector(".image").innerHTML = html;
+document.querySelector(".title").textContent = originalArticle.articleTitle;
+document.querySelector(".Atext").textContent = originalArticle.articleText;
+
         }
-
-        document.onload = showData();
+        document.onload = readData(index);
     </script>
 </body>
 </html>

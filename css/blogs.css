@@ -120,6 +120,7 @@ padding-top: 3% ;
     border: 2px solid  #2B2B2B;
     border-radius: 10px;
 }
+
 .blog .image{
     width: 40%;
 }
@@ -149,25 +150,25 @@ height: 100%;
     color:rgba(255, 255, 255, 0.70);
     padding: 2% 0%;
 }
-.blog .read-more{
+.blog .read-more .link{
     display: flex;
     justify-content: flex-end;
     color: white;
     font-family: Inter;
-    font-size: clamp(10px , 0.8vw, 20px);
-}
-.read-more .link a{
-    color: white;
-    font-family: Inter;
     font-size: clamp(10px , 0.5vw, 20px);
+    border: none;
     background: #2B2B2B;
-    padding: 5px 10px;
-    width: 80px;
+    padding: 2px 10px;
+    width: 75px;
+    cursor: pointer;
     border-radius: 10px;
-    text-decoration: none;
     text-align: center;
 }
-.read-more .link a:hover{
+.read-more .link a{
+    font-family: Inter;
+    text-decoration: none;
+}
+.link a:hover{
     color: #2EAF3B;
 }
 .engaging{
@@ -192,6 +193,125 @@ height: 100%;
     color: white;
     font-family: Inter;
     font-size: clamp(10px ,0.5vw, 20px);
+}
+.container{
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    width: 60%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1% 5%;
+    background-color: grey;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+.close{
+    display: flex;
+    justify-content: flex-end;
+}
+.container .header{
+    display: flex;
+    background: #121212;
+    height: 10%;
+    border-radius: 10px;
+    gap: 5%;
+    width: 100%;
+    
+}
+.header .blogimage{
+   width: 20%;
+}
+.header .blogimage img{
+    width: 100%;
+    height: 150px;
+}
+.header .title{
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: clamp(13px , 2vw, 40px);
+    line-height: 2.5;
+}
+.readcontent{
+    padding: 2% 2%;
+    background-color: gray;
+}
+.readcontent p{
+    color: #FFF;
+    font-family: 'Inter';
+    font-size: clamp(13px , 1vw, 40px);
+    line-height: 2;
+
+}
+
+.engaging{
+    display: flex;
+   gap: 2%;
+    justify-content: flex-start;
+    margin-bottom: 1%;
+}
+.engaging a{
+    text-decoration: none;
+    color: white;
+    font-family: Inter;
+    font-size: clamp(10px ,1vw, 20px);
+    line-height: 3;
+    font-weight:bold;
+}
+.engaging a:hover{
+    color: #2EAF3B;
+
+}
+.content h4{
+    text-decoration: none;
+    color: white;
+    font-family: Inter;
+    font-size: clamp(10px ,1vw, 20px);
+    line-height: 3;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+}
+.comments p{
+    color: #FFF;
+    font-size: clamp(8px , 0.9vw, 15px);
+    font-family: inter;
+    padding: 1% 1%;
+}
+.comments h5{
+    color: #FFF;
+    font-size: clamp(8px , 1vw, 15px);
+    font-family: inter;
+    line-height: 2;
+}
+
+.row{
+    display: flex;
+    gap: 1%;
+}
+@media only screen  and (max-width: 426px){
+    .header .image img{
+        width: 100%;
+        height: 100px;
+    }
+button img{
+    width: 15px;
+    height: 15px;
+}
 }
     @media only screen  and (max-width: 1023px){
         .nav-header{

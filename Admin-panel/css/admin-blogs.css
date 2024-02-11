@@ -435,55 +435,139 @@ line-height: 2;
     line-height: 2;
     padding: 1.5% 1.5%;
 }
-.list{
-    width: 100%;
-    color: #FFF;
-    font-family: inter;
-    padding: 2%;
-}
-.list thead th{
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    font-size: clamp(10px , 1.2vw, 30px);
-    padding: 1% 1%;
-    margin: 1%;
+.articleContent{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 2% 4%;
+    flex-wrap: wrap;
+}  
+.blog{
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+    height: 160px;
 
+    border: 2px solid  rgba(255, 255, 255, 0.20);
+    border-radius: 10px;
 }
-.list tbody td{
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    font-size: clamp(10px , 1vw, 30px);
-    padding: 1% 1%;
-    margin: 1%;
-    width: 20%;
-
+.index{
+    font-size: clamp(12px , 1.2vw, 20px);
+    color: white;
 }
-.list tbody td button{
-    font-size: clamp(10px , 1vw, 30px);
-    padding: 3% 3%;
-    margin: 1%;
+.blog .image{
+    width: 30%;
+}
+.blog .image img{
+width: 100%;
+height: 100%;
+}
+.blog .blog-description{
+    display: flex;
+    flex-direction: column;
+    font-family: Inter;
+    width: 60%;
+    padding: 2% 5%;
+}
+.blog .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.blog .description h3{
+    font-size: clamp(12px , 1.2vw, 20px);
+    line-height: 1.5;
+    color: white;
+}
+.blog .description p{
+    font-size: clamp(10px , 0.8vw, 15px);
+    color:rgba(255, 255, 255, 0.70);
+    padding: 2% 0%;
+}
+.blog .read-more{
+    gap: 5px;
+}
+.blog .read-more .link{
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    font-family: Inter;
+    font-size: clamp(10px , 0.5vw, 20px);
     border: none;
-    border-radius: 2px;
+    background: #116a3c;
+    padding: 2px 10px;
+    width: 75px;
     cursor: pointer;
-    
+    border-radius: 10px;
+    text-align: center;
 }
-.list tbody td .delete{
-    background: rgb(158, 42, 42);
-}
-.list tbody td .edit{
-    background: #e3dc0f;
-}
-.list tbody td .read{
-    background: rgb(47, 111, 47);
-}
-.list tbody td .read a{
+.read-more .link a{
+    font-family: Inter;
     text-decoration: none;
-    font-size: clamp(10px , 1vw, 30px);
-    color: #121212;
 }
-.list tbody td img{
-    width: 100%;
-    height:100%;
+.link a:hover{
+    color: #2EAF3B;
 }
+.engaging{
+    display: flex;
+    gap:4%;
+    align-items: flex-end;
+    margin-bottom: 1%;
 
+}
+.engaging a{
+    text-decoration: none;
+    color: white;
+    font-family: Inter;
+    font-size: clamp(10px ,0.81vw, 20px);
+}
+.engaging a:hover{
+    color: #2EAF3B;
+}
+.date{
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-family: Inter;
+    font-size: clamp(10px ,0.5vw, 20px);
+}
+.blog .read-more .delete{
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    font-family: Inter;
+    font-size: clamp(10px , 0.5vw, 20px);
+    border: none;
+    background: #741e1e;
+    padding: 2px 10px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+}
+.read-more .delete a{
+    font-family: Inter;
+    text-decoration: none;
+}
+.blog .read-more .edit{
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    font-family: Inter;
+    font-size: clamp(10px , 0.5vw, 20px);
+    border: none;
+    background: #c4d224;
+    padding: 2px 15px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+}
+.read-more .link a{
+    font-family: Inter;
+    text-decoration: none;
+}
 @media only screen  and (max-width: 1023px){
 .nav-header{
     display: none;
@@ -536,10 +620,31 @@ line-height: 2;
     }
     .Articles-items .blog-description{
         width: 90%;
-            padding: 1% 5%;
+         padding: 1% 5%;
         
     }
-
+   
+    @media only screen  and (max-width: 1024px){
+        .blog{
+        display: flex;
+        flex-direction: column;
+        width: 235px;
+        height: 250px;
+    }
+    .articleContent{
+        gap:20px;
+        justify-content: center;
+    }
+    .blog .image{
+        height: 40%;
+        width: 100%;
+    }
+    .blog .blog-description{
+        width: 90%;
+        padding: 2% 5%;
+    }
+}
+    
 }
 
 @media only screen  and (min-width: 1023px){
@@ -550,3 +655,106 @@ line-height: 2;
         display: none;
     }
     }
+   
+    .container{
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        width: 60%;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1% 5%;
+        background-color: grey;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+        border-radius: 10px;
+    }
+  
+    .close{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .container .header{
+        display: flex;
+        background: #121212;
+        height: 10%;
+        border-radius: 10px;
+        gap: 5%;
+        width: 100%;
+        
+    }
+    .header .blogimage{
+       width: 20%;
+    }
+    .header .blogimage img{
+        width: 100%;
+        height: 150px;
+    }
+    .header .title{
+        color: #FFF;
+        font-family: 'Inter';
+        font-size: clamp(13px , 2vw, 40px);
+        line-height: 2.5;
+    }
+    .readcontent{
+        padding: 2% 2%;
+        background-color: gray;
+    }
+    .readcontent p{
+        color: #FFF;
+        font-family: 'Inter';
+        font-size: clamp(13px , 1vw, 40px);
+        line-height: 2;
+    
+    }
+    
+    .engaging{
+        display: flex;
+       gap: 2%;
+        justify-content: flex-start;
+        margin-bottom: 1%;
+    }
+    .engaging a{
+        text-decoration: none;
+        color: white;
+        font-family: Inter;
+        font-size: clamp(10px ,1vw, 20px);
+        line-height: 3;
+        font-weight:bold;
+    }
+    .engaging a:hover{
+        color: #2EAF3B;
+    
+    }
+    .content h4{
+        text-decoration: none;
+        color: white;
+        font-family: Inter;
+        font-size: clamp(10px ,1vw, 20px);
+        line-height: 3;
+    }
+    .comments{
+        display: flex;
+        flex-direction: column;
+    }
+    .comments p{
+        color: #FFF;
+        font-size: clamp(8px , 0.9vw, 15px);
+        font-family: inter;
+        padding: 1% 1%;
+    }
+    .comments h5{
+        color: #FFF;
+        font-size: clamp(8px , 1vw, 15px);
+        font-family: inter;
+        line-height: 2;
+    }
+    
+    .row{
+        display: flex;
+        gap: 1%;
+    }
+
+  
+    

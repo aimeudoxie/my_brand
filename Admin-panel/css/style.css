@@ -197,12 +197,12 @@ line-height: 1.5;
 }
 .statistics{
     display: flex;
-    gap:5%;
+    gap:2%;
     padding: 4% 0%;
 }
 .statistics .statistics-items{
     padding: 1% 4%;
-    width: 23%;
+    width: 30%;
     height: 70%;
     border: 1.5px dashed #2EAF3B;
     border-radius: 10px;

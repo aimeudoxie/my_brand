@@ -61,7 +61,7 @@
         <input  type="password" placeholder="confirm your password"  id="password2"><div class="error"></div></div>
     
 
-                        <input type="submit" value="update"></input>
+                        <input type="submit" value="update" id="updateButton"></input>
                       </form>
                       </div>
                 <h4>Registered Users</h4>
@@ -104,6 +104,57 @@
             const form = document.querySelector('.form');
             form.style.display = 'flex';
         }
+        function hideForm() {
+            const form = document.querySelector('.form');
+            form.style.display = 'none';
+        }
+        function validateForm(){
+    var fname= document.getElementById("fname").value;
+    var lname= document.getElementById("lname").value;
+    var email= document.getElementById("email").value;
+    var password= document.getElementById("password").value;
+    var password2= document.getElementById("password2").value;
+    const regex= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*?&]{8,}$/;
+
+    if(fname == ""){
+        alert("First Name is required");
+        return false;
+    }
+    if(lname == ""){
+        alert("Last Name is required");
+        return false;
+    }
+
+    if(email == ""){
+        alert("email is required");
+        return false;
+    }
+    if (password == "")
+    {
+        alert("password is required");
+        return false;
+    }
+    if (password2 == "")
+    {
+        alert("password is required");
+        return false;
+    }
+    if(!regex.test(password)){
+        alert("Password must contain at least one letter, at least one number, and be longer than six charaters.")
+        return false;
+    }
+    if(!regex.test(password2)){
+        alert("Password2 must contain at least one letter, at least one number, and be longer than six charaters.")
+        return false;
+    }
+    if (password!=password2){
+        alert("password should match")
+        return false;
+    }
+    else{
+    return true;
+    }
+}
                 document.onload = showData();
     function showData(){
         var userList;
@@ -139,47 +190,45 @@
         localStorage.setItem("userList", JSON.stringify(userList));
         showData();
      }
-    
+     document.getElementById("updateButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            updateData(); // Call your update function
+        });
+
+
      function updateData(index){
         showForm()
-
-        var userList;
         if(localStorage.getItem("userList") == null){
-            userList = [];
-        }
-        else{
-            userList = JSON.parse(localStorage.getItem("userList"));
-        }
-    
-        document.getElementById("fname").value =userList[index].fname;
-        document.getElementById("lname").value= userList[index].lname;
-        document.getElementById("email").value = userList[index].email;
-        document.getElementById("password").value = userList[index].password;
-        document.getElementById("password2").value = userList[index].password2;
-        showForm()
-    
-        document.querySelector("#Update").onclick = function(){
-    
-            if(validateForm()== true){
-                userList[index].fname = document.getElementById("fname").value;
-                userList[index].lname = document.getElementById("lname").value;
-                userList[index].email = document.getElementById("email").value;
-                userList[index].password =document.getElementById("password").value;
-                userList[index].password2 =document.getElementById("password2").value;
-    
-                localStorage.setItem("userList", JSON.stringify(userList));
-        showData();
-         
-        document.getElementById("fname").value ="";
-        document.getElementById("lame").value="";
-        document.getElementById("email").value ="";
-        document.getElementById("password").value ="";
-        document.getElementById("password2").value ="";
-        }
+        userList = [];
     }
-     
+    else{
+        userList = JSON.parse(localStorage.getItem("userList"));
     }
-    
+
+    document.getElementById("fname").value =userList[index].fname;
+    document.getElementById("lname").value= userList[index].lname;
+    document.getElementById("email").value = userList[index].email;
+    document.getElementById("password").value = userList[index].password;
+    document.getElementById("password2").value = userList[index].password2;
+
+    document.querySelector("#updateButton").onclick = function() {
+                
+
+        if(validateForm()== true){
+            userList[index].fname = document.getElementById("fname").value;
+            userList[index].lname = document.getElementById("lname").value;
+            userList[index].email = document.getElementById("email").value;
+            userList[index].password =document.getElementById("password").value;
+            userList[index].password2 =document.getElementById("password2").value;
+
+            localStorage.setItem("userList", JSON.stringify(userList)); // Update localStorage
+                    showData(); 
+                    hideForm() 
+
+    }
+}
+ 
+}
             </script>
 </body>
 </html>

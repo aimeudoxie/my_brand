@@ -191,11 +191,11 @@ padding-top: 3% ;
     outline: 0;
 }
 
-.form-control .success input {
+.form-control.success input {
     border-color: #09c372;
 }
 
-.form-control .error input {
+.form-control.error input {
     border-color: #ff3860;
 }
 

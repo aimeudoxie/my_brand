@@ -68,13 +68,14 @@
             event.preventDefault();
             validateForm();
         });
+
     function validateForm() {
     var userEmail = document.getElementById("email").value;
     var userPassword = document.getElementById("password").value;
     var storedUsers = JSON.parse(localStorage.getItem("userList")) || [];
 
     // Check if the user is the admin
-    if (userEmail === "eudoxieumwali@gmail.com" && userPassword === "Umwamikazi2@") {
+    if (userEmail === "eudoxieumwali@gmail.com" && userPassword === "Umwali2@") {
         alert("Admin login successful!");
         window.location.href = "./Admin-panel/index.html";
         return false; // Prevent the form from submitting
@@ -90,7 +91,6 @@
             return false; // Prevent the form from submitting
         }
     }
-
     // Invalid credentials
     alert("Invalid email or password. Please try again.");
     return false; // Prevent the form from submitting

@@ -659,7 +659,6 @@ height: 100%;
     .container{
         display: none;
         flex-direction: column; 
-        position:fixed;
         width: 90%;
         margin-top: -10%;
         margin-left: 50%;

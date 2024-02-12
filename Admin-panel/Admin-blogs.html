@@ -242,7 +242,7 @@ html += `
             showBtn();
             
             const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
-
+            articleList.sort((a, b) => articleList.indexOf(b) - articleList.indexOf(a));
             const originalArticle = articleList[index];
   const existingImage = originalArticle.articleImage;
   document.getElementById("articleTitle").value = originalArticle.articleTitle;

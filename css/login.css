@@ -187,6 +187,24 @@ padding-top: 3% ;
     line-height: 5;
   
 }
+.form-control input:focus {
+    outline: 0;
+}
+
+.form-control .success input {
+    border-color: #09c372;
+}
+
+.form-control .error input {
+    border-color: #ff3860;
+}
+
+.form-control .error {
+    color: #ff3860;
+    font-size: 12px;
+    font-family: inter;
+    height: 13px;
+}
     @media only screen  and (max-width: 1023px){
         .nav-header{
             display: none;

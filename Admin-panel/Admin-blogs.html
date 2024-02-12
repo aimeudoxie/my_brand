@@ -163,6 +163,7 @@
                 articleList = JSON.parse(localStorage.getItem("articleList"));
             }
             articleList.sort((a, b) => articleList.indexOf(b) - articleList.indexOf(a));
+
             var html = "";
             articleList.forEach(function (element, index) {
                 
@@ -286,7 +287,9 @@ html += `
         function readData(index) {
             showContainer()
             const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
+            articleList.sort((a, b) => articleList.indexOf(b) - articleList.indexOf(a));
             const originalArticle = articleList[index];
+            
 
             var  html="";
             html += `<img src="${originalArticle.articleImage}" alt="Article Image">`;

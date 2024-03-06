@@ -47,6 +47,7 @@
    
     <div class="form-control"><input  type="Text" placeholder="First name"  id="fname"><div class="error"></div></div>
     <div class="form-control"><input  type="Text" placeholder="Last name"  id="lname"><div class="error"></div></div>
+    <div class="form-control"><input  type="Text" placeholder="User name"  id="username"><div class="error"></div></div>
     <div class="form-control"><input  type="Email" placeholder="Email"  id="email"><div class="error"></div></div>
     <div class="form-control"><input  type="password" placeholder="password"  id="password"><div class="error"></div></div>
     <div class="form-control"><input  type="password" placeholder="confirm your password"  id="password2"><div class="error"></div>
@@ -59,134 +60,142 @@
     </div>
 </section>
 <script>
-    function showSidebar(){
-        const sidebar = document.querySelector('.side-nav')
-        sidebar.style.display = 'flex';
-    }
-    function hideSidebar(){
-        const sidebar = document.querySelector('.side-nav')
-        sidebar.style.display = 'none';
-    }
-
-    const form = document.getElementById("form");
-
-// Function to create and display error messages
-function setError(element, message) {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector('.error');
-
-  // Ensure error display exists
-  if (!errorDisplay) {
-    const errorDiv = document.createElement('div');
-    errorDiv.classList.add('error');
-    inputControl.appendChild(errorDiv);
+  function showSidebar() {
+      const sidebar = document.querySelector('.side-nav');
+      sidebar.style.display = 'flex';
   }
 
-  errorDisplay.textContent = message;
-  inputControl.classList.add('error');
-  inputControl.classList.remove('success');
-}
-
-// Function to remove error messages and styling
-function setSuccess(element) {
-  const inputControl = element.parentElement;
-  const errorDisplay = inputControl.querySelector('.error');
-
-  if (errorDisplay) {
-    errorDisplay.textContent = '';
-    inputControl.classList.remove('error');
-    inputControl.classList.add('success');
-  }
-}
-
-// Function to validate the form
-function validateForm(event) {
-  event.preventDefault(); // Prevent default form submission
-
-  const fname = document.getElementById("fname").value;
-  const lname = document.getElementById("lname").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const password2 = document.getElementById("password2").value;
-  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*?&]{8,}$/;
-
-  let isValid = true; // Assume validity initially
-
-  // Clear any existing error messages
-  const inputs = form.querySelectorAll("input");
-  inputs.forEach(setSuccess);
-
-  // Validate fields and display errors if necessary
-  if (fname === "") {
-    setError(document.getElementById("fname"), "First Name is required");
-    isValid = false;
+  function hideSidebar() {
+      const sidebar = document.querySelector('.side-nav');
+      sidebar.style.display = 'none';
   }
 
-  if (lname === "") {
-    setError(document.getElementById("lname"), "Last Name is required");
-    isValid = false;
+  function registerUserApi(user) {
+    fetch("https://my-brandapi.onrender.com/api/signup", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log("User registered successfully:", data);
+          alert("Account created successfully");
+          window.location.href = "login.html";
+      })
+      .catch(error => {
+          console.error('Error during API registration:', error);
+          // Handle error here, display an error message, etc.
+      });
   }
 
-  if (email === "") {
-    setError(document.getElementById("email"), "Email is required");
-    isValid = false;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    setError(document.getElementById("email"), "Invalid email format");
-    isValid = false;
+  const form = document.getElementById("form");
+
+  function setError(element, message) {
+      const inputControl = element.parentElement;
+      const errorDisplay = inputControl.querySelector('.error');
+
+      if (!errorDisplay) {
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('error');
+          inputControl.appendChild(errorDiv);
+      }
+
+      errorDisplay.textContent = message;
+      inputControl.classList.add('error');
+      inputControl.classList.remove('success');
   }
 
-  if (password === "") {
-    setError(document.getElementById("password"), "Password is required");
-    isValid = false;
-  } else if (!regex.test(password)) {
-    setError(
-      document.getElementById("password"),
-      "Password must contain at least one letter, one number, and be at least 8 characters long"
-    );
-    isValid = false;
+  function setSuccess(element) {
+      const inputControl = element.parentElement;
+      const errorDisplay = inputControl.querySelector('.error');
+
+      if (errorDisplay) {
+          errorDisplay.textContent = '';
+          inputControl.classList.remove('error');
+          inputControl.classList.add('success');
+      }
   }
 
-  if (password2 === "") {
-    setError(document.getElementById("password2"), "Confirm password is required");
-    isValid = false;
-  } else if (password2 !== password) {
-    setError(document.getElementById("password2"), "Passwords must match");
-    isValid = false;
+  function validateForm(event) {
+      event.preventDefault();
+
+      const fname = document.getElementById("fname").value;
+      const lname = document.getElementById("lname").value;
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const password2 = document.getElementById("password2").value;
+      const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*?&]{8,}$/;
+
+      let isValid = true;
+
+      const inputs = form.querySelectorAll("input");
+      inputs.forEach(setSuccess);
+
+      if (fname === "") {
+          setError(document.getElementById("fname"), "First Name is required");
+          isValid = false;
+      }
+
+      if (lname === "") {
+          setError(document.getElementById("lname"), "Last Name is required");
+          isValid = false;
+      }
+      if (username === "") {
+          setError(document.getElementById("username"), "UserName is required");
+          isValid = false;
+      }
+
+      if (email === "") {
+          setError(document.getElementById("email"), "Email is required");
+          isValid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setError(document.getElementById("email"), "Invalid email format");
+          isValid = false;
+      }
+
+      if (password === "") {
+          setError(document.getElementById("password"), "Password is required");
+          isValid = false;
+      } else if (!regex.test(password)) {
+          setError(
+              document.getElementById("password"),
+              "Password must contain at least one letter, one number, and be at least 8 characters long"
+          );
+          isValid = false;
+      }
+
+      if (password2 === "") {
+          setError(document.getElementById("password2"), "Confirm password is required");
+          isValid = false;
+      } else if (password2 !== password) {
+          setError(document.getElementById("password2"), "Passwords must match");
+          isValid = false;
+      }
+
+      if (isValid) {
+          var user = {
+              firstname: fname,
+              lastname: lname,
+              username:username,
+              email: email,
+              password: password,
+          };
+
+          // Call the API for user registration
+          registerUserApi(user);
+      }
   }
 
-  if (isValid) {
-    // Form is valid, submit or take other actions
-    alert("Account created successfully");
-    window.location.href = "login.html";
-
-                var userList;
-                if (localStorage.getItem("userList") == null) {
-                    userList = [];
-                } else {
-                    userList = JSON.parse(localStorage.getItem("userList"));
-                }
-
-                userList.push({
-                    fname: fname,
-                    lname: lname,
-                    email: email,
-                    password: password,
-                    password2: password2,
-                });
-                localStorage.setItem("userList", JSON.stringify(userList));
-                showData();
-
-                // Reset form fields
-                document.getElementById("fname").value = "";
-                document.getElementById("lname").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("password").value = "";
-                document.getElementById("password2").value = "";
-            }
-        }
-
-        form.addEventListener('submit', validateForm);
-    </script>
+  form.addEventListener('submit', validateForm);
+</script>
 </script>
 </body>
 </html>

@@ -37,16 +37,15 @@ section{
     width: 100%;
     height: 150px;
 }
-.header .title{
+h2{
+    font-size: clamp(13px , 2vw, 40px);
     color: #FFF;
     font-family: 'Inter';
-    font-size: clamp(13px , 2vw, 40px);
-    line-height: 2.5;
 }
-.content{
+.container{
     padding: 2% 2%;
 }
-.content p{
+.container p{
     color: #FFF;
     font-family: 'Inter';
     font-size: clamp(13px , 1vw, 40px);
@@ -72,7 +71,7 @@ section{
     color: #2EAF3B;
 
 }
-.content h4{
+.container h4{
     text-decoration: none;
     color: white;
     font-family: Inter;
@@ -100,6 +99,8 @@ section{
     display: flex;
     gap: 1%;
 }
+
+
 @media only screen  and (max-width: 426px){
     .header .image img{
         width: 100%;

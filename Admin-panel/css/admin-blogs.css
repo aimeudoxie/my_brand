@@ -568,6 +568,24 @@ height: 100%;
     font-family: Inter;
     text-decoration: none;
 }
+.form-control input:focus {
+    outline: 0;
+}
+
+.form-control.success input {
+    border-color: #09c372;
+}
+
+.form-control.error input {
+    border-color: #ff3860;
+}
+
+.form-control .error {
+    color: #ff3860;
+    font-size: 12px;
+    font-family: inter;
+    height: 13px;
+}
 @media only screen  and (max-width: 1023px){
 .nav-header{
     display: none;
@@ -642,7 +660,7 @@ height: 100%;
     .blog .blog-description{
         width: 90%;
         padding: 2% 5%;
-    }
+    } 
 }
     
 }

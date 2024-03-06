@@ -79,80 +79,81 @@
 </div>
 </section> 
 <script>
-    function showSidebar(){
-        const sidebar = document.querySelector('.side-nav')
-        sidebar.style.display = 'flex';
-    }
-    function hideSidebar(){
-        const sidebar = document.querySelector('.side-nav')
-        sidebar.style.display = 'none';
-    }
-    function showContainer() {
-            const form = document.querySelector('.container');
-            form.style.display = 'flex';
+    async function fetchDataFromAPI() {
+        try {
+            const response = await fetch('https://my-brandapi.onrender.com/api/articles');
+      
+            console.log('API Response Status:', response.status);
 
-        }
-    const title= localStorage.getItem('title');
-    const text=localStorage.getItem('text');
 
-    
-             function showData() {
-            var articleList;
-            if (localStorage.getItem("articleList") == null) {
-                articleList = [];
-            } else {
-                articleList = JSON.parse(localStorage.getItem("articleList"));
-            }
-            articleList.sort((a, b) => articleList.indexOf(b) - articleList.indexOf(a));
+const headersObject = {};
+response.headers.forEach((value, name) => {
+    headersObject[name] = value;
+});
+console.log('API Response Headers:', headersObject);
 
-            var html = "";
-            articleList.forEach(function (element, index) {
-                const words = element.articleText.split(" ");
+const responseData = await response.json();
 
-// Truncate the words array to the first 30 words
-const first30Words = words.slice(0, 20);
+console.log('API Response Data:', responseData);
 
-// Join the truncated words back into a string
-const outputString = first30Words.join(" ");
-                html += `
-                <div class="blog">
-                <div class="image"><a href=""><img src="${element.articleImage}"></a></div>
+const { status, data } = responseData;
 
-<div class="blog-description">
-    <div class="description">
-    <h3 id="title">${element.articleTitle}</h3>
-    <p id="text">${outputString}
-    </p>
-</div>`;
-html += '<div class="read-more"><button class="link" onclick="readData(' + index + ')">Read More</button></div>'
-html += `<div class="engaging">
-  <a href=" "><img src="Images/heart.png"> 2 </a>
-  <a href=""><img src="Images/comments.png"> 1 </a>
-</div>
-<div class="date">12 Jan</div>
-</div>
-</div>`;
+
+            if (status === 'susccess') {
+                const baseURL = 'https://my-brandapi.onrender.com'; 
+
+            data.forEach(article => {
+                //article.imagePath = baseURL + article.imagePath;
+                article.textFirst20Words = getFirst20Words(article.text);
             });
-            document.querySelector(".content").innerHTML = html;
+                const html = data.map(article => `
+                    <div class="blog">
+                        <div class="image"><a href=""><img src="${article.imagePath}"></a></div>
+                        <div class="blog-description">
+                            <div class="description">
+                                <h3 id="title">${article.title}</h3>
+                                <p id="text">${article.textFirst20Words}...</p>
+                            </div>
+                            <div class="read-more">
+                                <button class="link" onclick="readData('${article._id}')">Read More</button>
+                            </div>
+                            <div class="engaging">
+                                <a href=" "><img src="Images/comments.png"> ${article.comments.length} </a>
+                            </div>
+                            <div class="date">${new Date(article.createdDate).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+                document.querySelector(".content").innerHTML = html;
+            } 
+            else {
+                console.error('API returned an error:', status);
+            }
+        } catch (error) {
+            console.error('Error fetching data from API:', error);
         }
+    }
 
-        document.onload = showData();
+    async function readData(articleId) {
+            try {
+                const response = await fetch(`https://my-brandapi.onrender.com/api/articles/${articleId}`);
+                const articleData = await response.json();
 
-        function readData(index) {
-            showContainer()
-            const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
-            const originalArticle = articleList[index];
-
-            var  html="";
-            html += `<img src="${originalArticle.articleImage}" alt="Article Image">`;
-
-            document.querySelector(".blogimage").innerHTML = html;
-document.querySelector(".title").textContent = originalArticle.articleTitle;
-document.querySelector(".Atext").textContent = originalArticle.articleText;
-
+                // Redirect to readmore.html with the specific article ID
+                window.location.href = `read more.html?articleId=${articleId}`;
+            } catch (error) {
+                console.error('Error fetching article data from API:', error);
+            }
         }
-         
-    
+    function getFirst20Words(text) {
+    const words = text.split(' ');
+    const first20Words = words.slice(0, 20);
+    return first20Words.join(' ');
+}
+
+    // Fetch data from API on page load
+    document.onload = fetchDataFromAPI();
 </script>
 </body>
 </html>

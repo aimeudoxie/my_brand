@@ -12,48 +12,72 @@
 <body>
     <section>
         <div class="container">
-            <a href="Admin-blogs.html"><div class="close"><img src="../Images/close.png"></div></a>
-        <div class="header">
-            <div class="image">
-                <img src/>
-            </div>
-            <div class="title"></div>
-
-        </div>
-            <div class=".readcontent">
-                <p class="Atext"> </p>
             
-            <div class="engaging">
-                <a href=" "> 200 Likes </a>
-                <a href=""> 15 Comments </a>
-              </div>
-              <h4>Comment</h4>
-              <div class="comments">
-                <div class="row"><h5>Alain Mutoyi:   </h5>
-                <p>Good job Bro keep it up</p></div>
-                <div class="row"><h5>Alain Mutoyi:   </h5>
-                    <p>Good job Bro keep it up</p></div>
-              </div>
-    </div>
+        
 </div>
     </section>
     <script>
- function readData(index) {
+        async function readData() {
+            try {
+                // Extract the articleId from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleId = urlParams.get('articleId');
+
+                const response = await fetch(`https://my-brandapi.onrender.com/api/articles/${articleId}`);
+                const articleData = await response.json();
+
+                console.log(articleData)
+                console.log(articleData.data.comments)
+
+                const comdata=articleData.data.comments;
+
+                const { status, data } = articleData;
+                // Update your container with the specific article data
+                
+                    const baseURL='https://my-brandapi.onrender.com/';
+                    articleData.data.imagePath = baseURL + articleData.data.imagePath;
+                
+                if (status === 'susccess') {
+                const html = 
+                `
+                <a href="Admin-blogs.html"><div class="close"><img src="../Images/close.png"></div></a>
+                <div class="header">
+            <div class="image" id="articleImage">
+                <img src="${articleData.data.imagePath}">
+            </div>
+            <div class="title" id="articleTitle">
+                <h2>${articleData.data.title}</h2>
+                </div>
+
+        </div>
+            <div class="readcontent" >
+                <p class="Atext" id="articleText">${articleData.data.text} </p>
             
+            <div class="engaging">
+                <!--<a href=" "> 200 Likes </a>-->
+                <a href=""> ${articleData.data.comments.length} Comments </a>
+              </div>
+              <h4>Comment</h4>
+              <div class="comments" id="comments">
+               
+              </div>
+    </div>`;
+    const comments = comdata.map(articlecomment =>`
+    <div class="row"><h5>${articlecomment.username}</h5>
+                <p>${articlecomment.text}</p></div>
+    `).join('');
 
-            showContainer()
-            const articleList = JSON.parse(localStorage.getItem("articleList") || "[]");
-            const originalArticle = articleList[index];
+    document.querySelector(".container").innerHTML = html;
+    document.querySelector(".comments").innerHTML = comments;
 
-            var  html="";
-            html += `<img src="${originalArticle.articleImage}" alt="Article Image">`;
 
-            document.querySelector(".image").innerHTML = html;
-document.querySelector(".title").textContent = originalArticle.articleTitle;
-document.querySelector(".Atext").textContent = originalArticle.articleText;
-
+                }
+            } catch (error) {
+                console.error('Error fetching article data from API:', error);
+            }
         }
-        document.onload = readData(index);
+
+        document.onload = readData();
     </script>
 </body>
 </html>

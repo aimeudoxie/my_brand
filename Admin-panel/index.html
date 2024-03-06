@@ -39,7 +39,7 @@
                 <a href="Admin-blogs.html">Blogs</a>
                 <a href="Admin-messages.html">Messages <span class="message-numbers"> 2</span></a>
                 <a href="users.html">Users</a>
-                <a href="../login.html">Log Out</a>
+                <a href="../login.html" onclick="logout()">Log Out</a>
         </div>
             
             <div class="side-nav">
@@ -48,7 +48,7 @@
                 <a href="Admin-blogs.html">Blogs</a>
                 <a href="Admin-messages.html">Messages <span class="message-numbers"> 2 </span></a>
                 <a href="users.html">Users</a>
-                <a href="../login.html">Log Out</a>
+                <a href="../login.html" onclick="logout()">Log Out</a>
         </div>
     </div>
     <div class="right-content">
@@ -83,6 +83,10 @@
                 const sidebar = document.querySelector('.side-nav')
                 sidebar.style.display = 'none';
             }
+            function logout() {
+        localStorage.removeItem("token");
+        alert("Logout successful!");
+    }
         </script>
 </body>
 </html>

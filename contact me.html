@@ -76,11 +76,11 @@
                 <h4>Leave a message we will get in touch soon</h4>
                 <form action="#">
 <div class="row">
-    <input  type="text" placeholder="Your Name" required name="Name">
-    <input  type="text" placeholder="Your Email" required name="Email"></div>
+    <input  type="text" placeholder="Your Name" required name="Name" id="Name">
+    <input  type="text" placeholder="Your Email" required name="Email" id="Email"></div>
     <div class="row-two">
-                    <input type="text" placeholder="Subject" required name="Subject"></div>
-                    <textarea class="form-control" name="message" rows="7" placeholder="Message" required=""></textarea>
+                    <input type="text" placeholder="Subject" required name="Subject" id="Subject"></div>
+                    <textarea class="form-control" name="message" rows="7" placeholder="Message" required="" id="message"></textarea>
                     <div class="row-three">
                     <button type="submit">
                       SEND
@@ -88,9 +88,6 @@
                     </div>
                   </form>
             </div>
-           
-           
-        
     </div>
 </section>
 <script>
@@ -102,6 +99,51 @@
         const sidebar = document.querySelector('.side-nav')
         sidebar.style.display = 'none';
     }
+    document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                const name = document.getElementById("Name").value;
+                const email = document.getElementById("Email").value;
+                const subject = document.getElementById("Subject").value;
+                const message = document.getElementById("message").value;
+
+                try {
+                    const response = await fetch('https://my-brandapi.onrender.com/api/sendmessage', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem('token'), 
+
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            subject,
+                            text: message,
+                            read: false,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        console.log('Message sent successfully!');
+                        alert('Message sent successfully!');
+                        
+                document.getElementById("Name").value=" ";
+                document.getElementById("Email").value=" ";
+                document.getElementById("Subject").value=" ";
+                document.getElementById("message").value=" ";
+                    } else {
+                        console.error('Failed to send message:', response.statusText);
+                        alert('Failed to send message:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error during fetch:', error);
+                }
+            });
+        });
 </script>
 </body>
 </html>

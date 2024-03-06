@@ -193,7 +193,7 @@ padding: 15% 2%;
 }
 .list{
     width: 90%;
-    color: #FFF;
+    color: #ffffffc8;
     font-family: inter;
     padding: 2%;
     border-collapse: collapse;
@@ -208,7 +208,7 @@ padding: 15% 2%;
 }
 .list tbody td{
     border:none;
-    background: rgba(255, 255, 255, 0.20);
+    background:#121212;
     border: 1px solid rgba(255, 255, 255, 0.40);
     padding: 1% 1%;  
 }

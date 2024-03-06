@@ -63,8 +63,10 @@
               </div>
     </div>`;
     const comments = comdata.map(articlecomment =>`
-    <div class="row"><h5>${articlecomment.username}</h5>
-                <p>${articlecomment.text}</p></div>
+    <div class="row">
+        <p><b>${articlecomment.username}</b>           ${articlecomment.text}</p>
+        <span>${new Date(articlecomment.createdAt).toLocaleDateString()}</span>
+                </div>
     `).join('');
 
     document.querySelector(".container").innerHTML = html;

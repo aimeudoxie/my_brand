@@ -11,13 +11,26 @@
 </head>
 <body>
     <section>
-        <div class="container">
-            
-        
-</div>
+        <div class="container"></div>
+        <div class="addComment">
+        <form id="form">
+            <label>Add Comment</label><br>
+            <div class="row"><input type="text" placeholder="Enter your comment" id="commentText" required="comment is required">
+            <button id="addComment"><img src="Images/send.png"></button></div>
+        </div>
+        </form>
     </section>
     <script>
         async function readData() {
+            const token = localStorage.getItem('token');
+            const addCommentDiv = document.querySelector('.addComment');
+
+            // Display or hide the addComment div based on the presence of the token
+            if (token) {
+                addCommentDiv.style.display = 'block';
+            } else {
+                addCommentDiv.style.display = 'none';
+            }
             try {
                 // Extract the articleId from the URL
                 const urlParams = new URLSearchParams(window.location.search);
@@ -33,6 +46,10 @@
 
                 const { status, data } = articleData;
                 // Update your container with the specific article data
+                
+                    const baseURL='https://my-brandapi.onrender.com/';
+                    articleData.data.imagePath = baseURL + articleData.data.imagePath;
+                
                 if (status === 'susccess') {
                 const html = 
                 `
@@ -59,14 +76,16 @@
               </div>
     </div>`;
     const comments = comdata.map(articlecomment =>`
-    <div class="row"><h5>${articlecomment.username}</h5>
-                <p>${articlecomment.text}</p></div>
+    <div class="row">
+        <p><b>${articlecomment.username}</b>           ${articlecomment.text}</p>
+        <span>${new Date(articlecomment.createdAt).toLocaleDateString()}</span>
+                </div>
     `).join('');
 
     document.querySelector(".container").innerHTML = html;
     document.querySelector(".comments").innerHTML = comments;
 
-
+   
                 }
             } catch (error) {
                 console.error('Error fetching article data from API:', error);
@@ -74,6 +93,52 @@
         }
 
         document.onload = readData();
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const addCommentBtn = document.getElementById('addComment');
+    const commentText = document.getElementById('commentText');
+
+    addCommentBtn.addEventListener('click', async function(event) {
+        event.preventDefault();
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('User not authenticated.');
+            return;
+        }
+
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('articleId');
+            const response = await fetch(`https://my-brandapi.onrender.com/api/addcomment/${articleId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    text: commentText.value
+                })
+            });
+            if (!response.ok) {
+                console.error('Failed to add comment:', response.status, response.statusText);
+                return;
+            }
+            const responseData = await response.json();
+            commentText.value=" ";
+            console.log('Comment added successfully:', responseData);
+            
+            alert('comment added');
+            readData()
+            // You can add code here to update the UI with the new comment, if needed
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
+    });
+});
+
+
+ 
     </script>
 </body>
 </html>

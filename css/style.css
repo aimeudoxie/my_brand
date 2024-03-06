@@ -86,7 +86,7 @@ padding: 10% 2%;
     transition: .3s;
 }
 .side-nav .home{
-    color: #2EAF3B;
+    color: #2EAF3B; 
     text-decoration: underline;
 }
 .close-icon{

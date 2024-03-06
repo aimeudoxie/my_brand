@@ -88,15 +88,20 @@ h2{
     font-family: inter;
     padding: 1% 1%;
 }
-.comments h5{
+.row p{
     color: #FFF;
-    font-size: clamp(8px , 1vw, 15px);
+    font-size: clamp(8px , 0.9vw, 15px);
     font-family: inter;
-    line-height: 2;
+    padding: 0.5% 0%;
 }
+.row p b{
+    font-size: clamp(8px , 1vw, 15px);
+}
+
 
 .row{
     display: flex;
+    flex-direction: column;
     gap: 1%;
 }
 

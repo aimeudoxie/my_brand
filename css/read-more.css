@@ -86,20 +86,61 @@ h2{
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
     font-family: inter;
-    padding: 1% 1%;
+   
 }
-.comments h5{
+.row p{
+    color: #FFF;
+    font-size: clamp(8px , 0.9vw, 15px);
+    font-family: inter;
+    padding: 0.5% 0%;
+}
+.row p b{
+    font-size: clamp(8px , 1vw, 15px);
+}
+
+.row span{
+    color: #FFF;
+    font-size: clamp(8px , 0.5vw, 15px);
+    font-family: inter;
+}
+.row{
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+.addComment{
+    padding: 2% 2%;
+    display: block;
+}
+.addComment label{
     color: #FFF;
     font-size: clamp(8px , 1vw, 15px);
     font-family: inter;
     line-height: 2;
 }
 
-.row{
-    display: flex;
-    gap: 1%;
+button{
+    background-color: transparent; 
+      border: none; 
+      cursor: pointer;
 }
 
+.addComment input[type="text"]{
+    border-radius: 5px;
+    width: 80%;
+    background: #414141;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 1% 2%;
+    margin: 1%;
+    color: #FFF;
+    font-size: clamp(8px , 0.9vw, 15px);
+}
+button img{
+    width: 80%;
+    height: auto;
+    display: block;
+
+}
 
 @media only screen  and (max-width: 426px){
     .header .image img{

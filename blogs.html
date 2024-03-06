@@ -25,7 +25,7 @@
                     <a href="Portfolio.html" >Portfolio</a>
                     <a href="Blogs.html" class="home">Blogs</a>
                     <a href="Contact Me.html">Contact Me</a>
-                    <a href="login.html">Login</a>
+                    <a href="#" id="loginLogoutLink"> </a>
                     
             </div>
             <div class="menu-icon" onclick=showSidebar()><a href="#"><img src="Images/burger-menu.png"></a></div>
@@ -37,18 +37,13 @@
                 <a href="Portfolio.html" >Portfolio</a>
                 <a href="Blogs.html"class="home">Blogs</a>
                 <a href="Contact Me.html">Contact Me</a>
-                <a href="login.html">Login</a>
+                <a href="#" id="loginLogoutLink"> </a>
         </div>
         </div>
         <h2>My Articles</h2>
         <div class="line"></div>
-        <div class="content">
-            <!--<div class="arrow"><a href=""><img src="Images/arrow-left.png"></a></div>-->
-           
-        
-        
+        <div class="content">       
         </div>
-        <!--<div class="arrow"><a href=""><img src="Images/right-chevron.png"></a></div>-->
         </div>
     </div>
     <div class="container">
@@ -63,50 +58,59 @@
     </div>
         <div class="readcontent">
             <p class="Atext"> </p>
-        
-        <!--<div class="engaging">
-            <a href=" "> 200 Likes </a>
-            <a href=""> 15 Comments </a>
-          </div>
-          <h4>Comment</h4>
-          <div class="comments">
-            <div class="row"><h5>Alain Mutoyi:   </h5>
-            <p>Good job Bro keep it up</p></div>
-            <div class="row"><h5>Alain Mutoyi:   </h5>
-                <p>Good job Bro keep it up</p></div>
-          </div>-->
 </div>
 </div>
 </section> 
 <script>
+    function showSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'flex';
+    }
+    function hideSidebar(){
+        const sidebar = document.querySelector('.side-nav')
+        sidebar.style.display = 'none';
+    }
+    function link(){
+        const loginLogoutLink = document.getElementById('loginLogoutLink');
+        const token = localStorage.getItem('token');
+if (token) {
+    loginLogoutLink.textContent = 'Logout';
+} else {
+    loginLogoutLink.textContent = 'Login';
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const loginLogoutLink = document.getElementById('loginLogoutLink');
+            loginLogoutLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage.removeItem('token');
+                window.location.href='login.html';
+            });
+        });
+    }   
+
+   
+
     async function fetchDataFromAPI() {
+        link();
         try {
             const response = await fetch('https://my-brandapi.onrender.com/api/articles');
-      
+
             console.log('API Response Status:', response.status);
 
+            const responseData = await response.json();
 
-const headersObject = {};
-response.headers.forEach((value, name) => {
-    headersObject[name] = value;
-});
-console.log('API Response Headers:', headersObject);
+            console.log('API Response Data:', responseData);
 
-const responseData = await response.json();
-
-console.log('API Response Data:', responseData);
-
-const { status, data } = responseData;
-
+            const { status, data } = responseData;
 
             if (status === 'susccess') {
-                const baseURL = 'https://my-brandapi.onrender.com'; 
+                data.forEach(article => {
+                    const baseURL='https://my-brandapi.onrender.com/';
 
-            data.forEach(article => {
-                //article.imagePath = baseURL + article.imagePath;
+                article.imagePath = baseURL + article.imagePath;
                 article.textFirst20Words = getFirst20Words(article.text);
             });
-                const html = data.map(article => `
+                const html = data.map(article =>`
                     <div class="blog">
                         <div class="image"><a href=""><img src="${article.imagePath}"></a></div>
                         <div class="blog-description">
@@ -118,7 +122,7 @@ const { status, data } = responseData;
                                 <button class="link" onclick="readData('${article._id}')">Read More</button>
                             </div>
                             <div class="engaging">
-                                <a href=" "><img src="Images/comments.png"> ${article.comments.length} </a>
+                                <a href="" onclick="readData('${article._id}')"><img src="Images/comments.png"> ${article.comments.length} </a>
                             </div>
                             <div class="date">${new Date(article.createdDate).toLocaleDateString()}</div>
                         </div>
@@ -153,7 +157,7 @@ const { status, data } = responseData;
 }
 
     // Fetch data from API on page load
-    document.onload = fetchDataFromAPI();
+    document.onload = fetchDataFromAPI()
 </script>
 </body>
 </html>

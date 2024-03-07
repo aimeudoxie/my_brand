@@ -48,41 +48,17 @@
                     <a href="Admin-blogs.html" >Blogs</a>
                     <a href="Admin-messages.html" class="home">Messages</a>
                     <a href="users.html">Users</a>
-                <a href="../login.html">Log Out</a>
+                <a href="../login.html" onclick="logout()">Log Out</a>
             </div>
         </div>
     
     <div class="right-content">
         <h2>Messages</h2>
         <div class="container">
-            <h3>New Messages</h3>
-            <div class="new-message-item">
-               <p>Names:  Umuragwa Eden</p>
-               <p>Email:  Umuragwaeden@gmail.com</p>
-               <h5>Request to hire</h5>
-               <p>Hi am Eden the CEO of Farm House i wanted you to make a website for 
-                my company visit us at our office at Kinigi,Northern Province,
-                Rwanda or contact us Email: reservations@farmhouserwanda.comCall: +250 798 483 321 for further information.</p>
-                <p class="date">12 Jan 2024   16:00</p>
-            </div>
-            <div class="new-message-item">
-                <p>Names:  Umuragwa Eden</p>
-                <p>Email:  Umuragwaeden@gmail.com</p>
-                <h5>Request to hire</h5>
-                <p>Hi am Eden the CEO of Farm House i wanted you to make a website for 
-                 my company visit us at our office at Kinigi,Northern Province,
-                 Rwanda or contact us Email: reservations@farmhouserwanda.comCall: +250 798 483 321 for further information.</p>
-                 <p class="date"> 12 Jan 2024   16:00</p>
-             </div>
-            <h3>Old Messages</h3>
+            <h3>Unread Messages</h3>
+            <div class="new-message-item"></div>
+            <h3>Read Messages</h3>
             <div class="old-message-item">
-                <p>Names:  Umuragwa Eden</p>
-                <p>Email:  Umuragwaeden@gmail.com</p>
-                <h5>Request to hire</h5>
-                <p>Hi am Eden the CEO of Farm House i wanted you to make a website for 
-                 my company visit us at our office at Kinigi,Northern Province,
-                 Rwanda or contact us Email: reservations@farmhouserwanda.comCall: +250 798 483 321 for further information.</p>
-                 <p class="date">12 Jan 2024   16:00</p>
 
             </div>
         </div>
@@ -90,14 +66,108 @@
     </div>
         </section>
         <script>
-            function showSidebar(){
-                const sidebar = document.querySelector('.side-nav')
-                sidebar.style.display = 'flex';
+              function logout() {
+        localStorage.removeItem("token");
+        alert("Logout successful!");
+    }
+            async function markAsRead(messageId) {
+                try {
+                    const response = await fetch(`https://my-brandapi.onrender.com/api/markAsRead/${messageId}`, {
+                        method: 'PUT',  // Assuming your API supports updating the read status via PUT request
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem('token'),
+                        },
+                    });
+        
+                    if (response.ok) {
+                        // Reload the page after marking as read
+                        location.reload();
+                    } else {
+                        console.error('Failed to mark message as read:', response.statusText);
+                        alert('Failed to mark message as read:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error during mark as read:', error);
+                }
             }
-            function hideSidebar(){
-                const sidebar = document.querySelector('.side-nav')
-                sidebar.style.display = 'none';
+        
+            document.addEventListener('DOMContentLoaded', async function () {
+                try {
+                    const response = await fetch('https://my-brandapi.onrender.com/api/read', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem('token'),
+                        },
+                    });
+        
+                    if (response.ok) {
+                        const messages = await response.json();
+        
+                        const newMessageContainer = document.querySelector('.new-message-item');
+                        const oldMessageContainer = document.querySelector('.old-message-item');
+        
+                        // Clear existing content
+                        newMessageContainer.innerHTML = '';
+                        oldMessageContainer.innerHTML = '';
+        
+                        // Iterate through messages and append them to the appropriate container
+                        messages.forEach(message => {
+                            const messageItem = document.createElement('div');
+                            messageItem.classList.add('message-item');
+        
+                            messageItem.innerHTML = `
+                                <p>Names: ${message.name}</p>
+                                <p>Email: ${message.email}</p>
+                                <h5>${message.subject}</h5>
+                                <p>${message.text}</p>
+                                <p><span class="date">${new Date(message.sentAt).toLocaleDateString()}</span></p>
+                                <button class="delete" id="delete" onclick="deleteMessage('${message._id}')"><img src="../Images/delete-button.png"></button>
+                            
+                            `;
+        
+                            if (message.read) {
+                                // Message is read, append to old messages
+                                messageItem.classList.add('old-message');
+                                oldMessageContainer.appendChild(messageItem);
+                            } else {
+                                // Message is not read, append to new messages
+                                messageItem.classList.add('new-message');
+                                messageItem.addEventListener('click', () => markAsRead(message._id));
+                                newMessageContainer.appendChild(messageItem);
+                            }
+                        });
+                    } else {
+                        console.error('Failed to fetch messages:', response.statusText);
+                        alert('Failed to fetch messages:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error during fetch:', error);
+                }
+            });
+            async function deleteMessage(messageId) {
+        try {
+            const response = await fetch(`https://my-brandapi.onrender.com/api/deleteMessage/${messageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem('token'),
+                },
+            });
+
+            if (response.ok) {
+                // Reload the page after deleting the message
+                location.reload();
+            } else {
+                console.error('Failed to delete message:', response.statusText);
+                alert('Failed to delete message:', response.statusText);
             }
-        </script>
+        } catch (error) {
+            console.error('Error during message deletion:', error);
+        }
+    }
+
+            </script>
 </body>
 </html>

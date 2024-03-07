@@ -48,7 +48,7 @@
                     <a href="Admin-blogs.html" >Blogs</a>
                     <a href="Admin-messages.html" class="home">Messages</a>
                     <a href="users.html">Users</a>
-                <a href="../login.html">Log Out</a>
+                <a href="../login.html" onclick=" logout()" >Log Out</a>
             </div>
         </div>
     
@@ -85,6 +85,10 @@
     </div>
         </section>
         <script>
+              function logout() {
+        localStorage.removeItem("token");
+        alert("Logout successful!");
+    }
             function showSidebar(){
                 const sidebar = document.querySelector('.side-nav')
                 sidebar.style.display = 'flex';

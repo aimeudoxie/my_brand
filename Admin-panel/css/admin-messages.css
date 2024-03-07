@@ -205,9 +205,21 @@ padding: 15% 2%;
     font-size: clamp(13px , 1vw, 40px);
     
 }
+.message-item{
+    border-radius: 5px;
+    border-bottom:1px solid #7db383;
+    padding: 0% 1%;
+    margin: 1%;
+}
+.message-item:hover{
+    box-shadow: 0 0 10px #809f84;
+   transition: .3s;
+   cursor: pointer;
+}
+
 .new-message-item{
     border-radius: 5px;
-    border-left:2px solid #2EAF3B;
+    border-left: 3px solid #2EAF3B;
     padding: 0% 1%;
     margin: 1%;
 }
@@ -234,6 +246,23 @@ padding: 15% 2%;
     border: 1px solid rgba(255, 255, 255, 0.20);
     padding: 1% 1%;
 }  
+.delete {
+    background-color: transparent; 
+      border: none; 
+      cursor: pointer;
+      padding: 1% 0% 1% 1%;
+      border-radius: 50%;
+}
+.delete:hover {
+    background-color: #ffffff58;
+     
+}
+.delete img{
+    width: 50%;
+    height: auto;
+    display: block;
+
+}
 
 
 @media only screen  and (max-width: 1023px){

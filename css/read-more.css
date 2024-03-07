@@ -108,6 +108,10 @@ h2{
     flex-direction: column;
     gap: 1%;
 }
+.row1{
+        display: flex;
+        gap: 1%;
+}
 .addComment{
     padding: 2% 2%;
     display: block;
@@ -123,20 +127,21 @@ button{
     background-color: transparent; 
       border: none; 
       cursor: pointer;
+      width: 10%;
 }
 
 .addComment input[type="text"]{
     border-radius: 5px;
-    width: 80%;
+    width: 70%;
     background: #414141;
     border: 1px solid rgb(255, 255, 255);
     padding: 1% 2%;
-    margin: 1%; 
+    margin: 1%;
     color: #FFF;
     font-size: clamp(8px , 0.9vw, 15px);
 }
 button img{
-    width: 80%;
+    width: 20%;
     height: auto;
     display: block;
 

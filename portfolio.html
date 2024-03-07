@@ -25,7 +25,7 @@
                     <a href="Portfolio.html" class="home">Portfolio</a>
                     <a href="Blogs.html">Blogs</a>
                     <a href="Contact Me.html">Contact Me</a>
-                    <a href="login.html">Login</a>
+                    <a href="#" class="loginLogoutLink"> </a>
             </div>
             <div class="menu-icon" onclick=showSidebar()><a href="#"><img src="Images/burger-menu.png"></a></div>
             <div class="side-nav">
@@ -36,7 +36,7 @@
                 <a href="Portfolio.html" class="home">Portfolio</a>
                 <a href="Blogs.html">Blogs</a>
                 <a href="Contact Me.html">Contact Me</a>
-                <a href="login.html">Login</a>
+                <a href="#" class="loginLogoutLink">Login</a>
         </div>
         </div>
         <h2>My Projects</h2>
@@ -102,9 +102,41 @@
     </div>
 </section>
 <script>
+    window.onload = link;
+    function link() {
+        const loginLogoutLink = document.querySelector('.loginLogoutLink');
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            loginLogoutLink.textContent = 'Logout';
+        } else {
+            loginLogoutLink.textContent = 'Login';
+        }
+
+        loginLogoutLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    }
     function showSidebar(){
         const sidebar = document.querySelector('.side-nav')
-        sidebar.style.display = 'flex';
+        sidebar.style.display = 'flex'; 
+        const loginLogoutLink = document.querySelector('.loginLogoutLink');
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            loginLogoutLink.textContent = 'Logout';
+        } else {
+            loginLogoutLink.textContent = 'Login';
+        }
+
+        loginLogoutLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });      
+
     }
     function hideSidebar(){
         const sidebar = document.querySelector('.side-nav')

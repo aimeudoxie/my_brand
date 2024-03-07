@@ -25,7 +25,7 @@
                     <a href="Portfolio.html">Portfolio</a>
                     <a href="Blogs.html">Blogs</a>
                     <a href="Contact Me.html">Contact Me</a>
-                    <a href="login.html">Login</a>
+                    <a href="#" id="loginLogoutLink"> </a>
             </div>
             <div class="menu-icon" onclick=showSidebar()><a href="#"><img src="Images/burger-menu.png"></a></div>
             
@@ -37,7 +37,7 @@
                 <a href="Portfolio.html">Portfolio</a>
                 <a href="Blogs.html">Blogs</a>
                 <a href="Contact Me.html">Contact Me</a>
-                <a href="login.html">Login</a>
+                <a href="#" id="loginLogoutLink"> </a>
         </div>
         </div>
         <h2>Know Me More</h2>
@@ -55,6 +55,24 @@
        
 </section>
 <script>
+    window.onload = link;
+    function link() {
+        const loginLogoutLink = document.getElementById('loginLogoutLink');
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            loginLogoutLink.textContent = 'Logout';
+        } else {
+            loginLogoutLink.textContent = 'Login';
+        }
+
+        loginLogoutLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    }
+
     function showSidebar(){
         const sidebar = document.querySelector('.side-nav')
         sidebar.style.display = 'flex';
